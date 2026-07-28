@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="scroll-behavior:smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sua Marca — O Futuro da Fibra Óptica</title>
+<meta name="description" content="Internet fibra óptica de ultra velocidade. Assine agora com a Sua Marca, agente autorizado Algar Telecom."/>
+
+<!-- Fonts: Exo (headings/prices) + Montserrat (body/UI) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- Iconify for icons -->
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   TOKENS & BASE DO DS01
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  --color-primary: #28BEA5;
+  --color-primary-dark: #0A645A;
+  --color-primary-medium: #239687;
+  --color-primary-light: #1EFFD2;
+  --color-primary-light-alt: #00EBB0;
+  --color-accent: #FFC300;
+  --color-accent-light: #FFD22D;
+  --color-accent-lighter: #FFE800;
+  --color-accent-text: #412402;
+  --color-bg: #FFFFFF;
+  --color-text-inverse: #FFFFFF;
+  --color-border-light: rgba(60,70,70,0.08);
+
+  --font-heading: 'Exo', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-base: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.5rem;
+  --text-5xl: 4.5rem;
+  --text-price: 3rem;
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  --max-width: 1280px;
+  --container-px: clamp(1.5rem, 5vw, 3rem);
+
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  --radius-badge: 20px;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.2);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.3);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.4);
+  --shadow-green: 0 4px 24px rgba(40,190,165,0.3);
+  --shadow-accent: 0 4px 32px rgba(255,195,0,0.35);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+  --duration-reveal: 0.9s;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+img { display:block; max-width:100%; }
+a { text-decoration:none; color:inherit; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-md);
+  color: var(--color-text-inverse); /* Tema escuro global no body */
+  background: #051A18; /* Fundo base muito escuro */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
+}
+
+/* ─── EFEITOS & ANIMAÇÕES PREMIUM ─── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 25%,
+    var(--color-accent) 50%,
+    var(--color-primary-light) 75%,
+    var(--color-primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes border-rotate { to { --border-angle: 360deg; } }
+.green-border-animated {
+  position: relative;
+  border-radius: var(--radius-card);
+}
+.green-border-animated::before {
+  content: '';
+  position: absolute;
+  inset: -2px; /* Margem negativa para a borda brilhar por fora */
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 40%,
+    var(--color-primary-light) 45%,
+    var(--color-primary) 50%,
+    transparent 60%
+  );
+  animation: border-rotate 4s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(40,190,165,0.2);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(40,190,165,0.6); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(40,190,165,0); }
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--color-primary-light);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Ambience */
+.glow { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+.glow-green { background: radial-gradient(circle, rgba(40,190,165,0.15) 0%, transparent 60%); }
+.glow-accent { background: radial-gradient(circle, rgba(255,195,0,0.1) 0%, transparent 60%); }
+
+/* Fiber speed lines */
+@keyframes fiber-line-1 { 0% { left: -20%; opacity: 0; } 30% { opacity: 0.8; } 100% { left: 120%; opacity: 0; } }
+@keyframes fiber-line-2 { 0% { left: -30%; opacity: 0; } 40% { opacity: 0.5; } 100% { left: 130%; opacity: 0; } }
+@keyframes fiber-line-3 { 0% { left: -10%; opacity: 0; } 20% { opacity: 0.4; } 100% { left: 110%; opacity: 0; } }
+.fiber-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.fiber-lines span {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary-light), transparent);
+}
+.fl-1 { width: 300px; top: 20%; animation: fiber-line-1 5s linear infinite; }
+.fl-2 { width: 200px; top: 60%; animation: fiber-line-2 7s linear infinite 2s; }
+.fl-3 { width: 400px; top: 85%; animation: fiber-line-3 6s linear infinite 1s; }
+
+/* Grid Paper */
+.grid-paper {
+  background-image:
+    linear-gradient(rgba(40,190,165,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40,190,165,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Scroll Reveal */
+.reveal-up { opacity: 0; transform: translateY(40px); transition: all var(--duration-reveal) var(--ease-out); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: all var(--duration-reveal) var(--ease-out); }
+.reveal-scale { opacity: 0; transform: scale(0.95); transition: all var(--duration-reveal) var(--ease-out); }
+.revealed { opacity: 1 !important; transform: translateY(0) translateX(0) scale(1) !important; }
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* Custom Animations */
+@keyframes floating {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+.float-anim { animation: floating 6s ease-in-out infinite; }
+
+@keyframes pulse-btn {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,195,0,0.7); }
+  70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(255,195,0,0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,195,0,0); }
+}
+.btn-pulse { animation: pulse-btn 2s infinite; }
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-bg {
+  background: linear-gradient(120deg, rgba(255,255,255,0.02) 0%, rgba(40,190,165,0.05) 50%, rgba(255,255,255,0.02) 100%);
+  background-size: 200% 200%;
+  animation: gradient-move 5s ease infinite;
+}
+
+/* ─── BOTOES ─── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-heading); font-weight: 700; font-size: var(--text-base);
+  letter-spacing: 0.02em; border: none; cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative; overflow: hidden; border-radius: var(--radius-btn);
+}
+.btn::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s var(--ease-out);
+}
+.btn:hover::before { left: 100%; }
+
+.btn-primary {
+  background: var(--color-accent); color: var(--color-accent-text);
+  box-shadow: var(--shadow-accent);
+}
+.btn-primary:hover {
+  background: var(--color-accent-lighter);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(255,195,0,0.4);
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--color-text-inverse);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-glass:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(40,190,165,0.4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-green), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.btn-lg { padding: var(--sp-4) var(--sp-8); font-size: var(--text-md); }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-heading); font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; border-radius: var(--radius-badge);
+}
+.badge-glass {
+  background: rgba(40,190,165,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(40,190,165,0.3);
+  color: var(--color-primary-light);
+  box-shadow: 0 0 20px rgba(40,190,165,0.1);
+}
+.badge-accent {
+  background: var(--color-accent); color: var(--color-accent-text);
+  box-shadow: 0 2px 12px rgba(255,195,0,0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HEADER PREMIUM
+   ═══════════════════════════════════════════════════════════════════ */
+.header-glass {
+  position: fixed;
+  top: 0; width: 100%; z-index: 100;
+  background: rgba(5,26,24,0.6); /* Verde extremamente escuro e transparente */
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: all var(--duration-base) var(--ease-out);
+}
+.header-glass.scrolled {
+  background: rgba(5,26,24,0.9);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-bottom-color: rgba(40,190,165,0.15);
+}
+
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px;
+}
+
+.brand-wrapper {
+  display: flex; align-items: center; gap: var(--sp-3);
+  text-decoration: none;
+}
+.brand-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-dark));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(40,190,165,0.3);
+}
+.brand-icon iconify-icon { color: white; font-size: 24px; }
+.brand-text { display: flex; flex-direction: column; }
+.brand-name {
+  font-family: var(--font-heading); font-weight: 800; font-size: var(--text-xl);
+  color: var(--color-text-inverse); line-height: 1; letter-spacing: -0.02em;
+}
+.brand-sub {
+  font-family: var(--font-heading); font-size: 0.55rem; font-weight: 600;
+  color: var(--color-primary-light); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 4px; opacity: 0.8;
+}
+
+.header-actions { display: flex; align-items: center; gap: var(--sp-4); }
+.status-indicator {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: 10px; font-family: 'SF Mono', monospace; color: rgba(255,255,255,0.6);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+@media (max-width: 768px) {
+  .status-indicator { display: none; }
+  .btn-glass span { display: none; }
+  .btn-glass { padding: var(--sp-2) var(--sp-3); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO IMMERSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 80px; /* offset header */
+  padding-bottom: 80px; /* offset marquee */
+  background: linear-gradient(180deg, #062E29 0%, #031211 100%);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--sp-12);
+  align-items: center; position: relative; z-index: 10;
+}
+
+.hero-content {
+  padding: var(--sp-8) 0;
+}
+
+.overline-wrap {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  padding: 6px 16px 6px 6px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-full); margin-bottom: var(--sp-6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.overline-tag {
+  background: var(--color-primary); color: #000;
+  padding: 4px 12px; border-radius: var(--radius-full);
+  font-family: var(--font-heading); font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.overline-text {
+  font-family: var(--font-body); font-size: var(--text-xs); color: rgba(255,255,255,0.8);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: var(--sp-6);
+  color: var(--color-text-inverse);
+}
+.hero-title span.fw-light { font-weight: 400; color: rgba(255,255,255,0.7); }
+
+.hero-desc {
+  font-size: var(--text-lg); color: rgba(255,255,255,0.6);
+  margin-bottom: var(--sp-12); line-height: 1.7; max-width: 580px;
+  font-weight: 400;
+}
+
+.hero-ctas {
+  display: flex; align-items: center; gap: var(--sp-4);
+  flex-wrap: wrap; margin-bottom: var(--sp-12);
+}
+
+.features-list {
+  display: flex; align-items: center; gap: var(--sp-8);
+  flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--sp-6);
+}
+.feature-item {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--font-heading); font-size: var(--text-sm); font-weight: 600;
+  color: rgba(255,255,255,0.8);
+}
+.feature-item iconify-icon { color: var(--color-primary-light); font-size: 1.2rem; }
+
+/* Glass Card Destaque */
+.hero-visual {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+}
+/* Anel brilhante atras do card */
+.hero-visual::before {
+  content: ''; position: absolute;
+  width: 120%; height: 120%;
+  background: radial-gradient(circle, rgba(40,190,165,0.15) 0%, transparent 60%);
+  z-index: 0; animation: pulse-dot 4s infinite alternate;
+}
+
+.glass-card-premium {
+  position: relative; z-index: 1;
+  background: rgba(10,100,90,0.3);
+  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-card);
+  padding: var(--sp-12) var(--sp-8);
+  width: 100%; max-width: 440px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  text-align: center;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+.glass-card-premium:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px);
+}
+
+.card-badge-top {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+}
+
+.plan-speed {
+  font-family: var(--font-heading); font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800; color: var(--color-text-inverse);
+  line-height: 1; margin-bottom: var(--sp-2);
+  text-shadow: 0 0 40px rgba(255,255,255,0.3);
+}
+.plan-speed span { font-size: 0.4em; color: var(--color-primary-light); text-transform: uppercase; letter-spacing: 0.1em; }
+
+.plan-target {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.6);
+  margin-bottom: var(--sp-8); text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.plan-specs {
+  display: flex; flex-direction: column; gap: var(--sp-4);
+  margin-bottom: var(--sp-12); text-align: left;
+  background: rgba(0,0,0,0.2); padding: var(--sp-6); border-radius: var(--radius-btn);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.spec {
+  display: flex; align-items: center; gap: var(--sp-3);
+}
+.spec-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(40,190,165,0.15); border: 1px solid rgba(40,190,165,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary-light); flex-shrink: 0;
+}
+.spec-text {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.9); font-weight: 500;
+}
+
+.price-block {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-8);
+}
+.price-block .currency { font-size: var(--text-lg); color: var(--color-primary-light); font-weight: 700; vertical-align: super; }
+.price-block .amount { font-family: var(--font-heading); font-size: 4rem; font-weight: 800; line-height: 0.9; }
+.price-block .cents { font-size: var(--text-2xl); font-weight: 700; }
+.price-block .period { font-size: var(--text-xs); color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+/* ─── MARQUEE INFINITO (Bottom of hero) ─── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.hero-marquee {
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.05);
+  padding: var(--sp-3) 0; overflow: hidden; z-index: 20;
+  backdrop-filter: blur(10px);
+}
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+.marquee-item {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 0 var(--sp-8);
+  font-family: var(--font-heading); font-size: var(--text-xs); font-weight: 700;
+  color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.15em;
+}
+.marquee-item iconify-icon { color: var(--color-primary-dark); font-size: 1.2rem; }
+
+@media (max-width: 992px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: var(--sp-16); }
+  .hero-content { padding-top: var(--sp-12); }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .features-list { justify-content: center; }
+  .glass-card-premium { transform: none; }
+  .glass-card-premium:hover { transform: translateY(-10px); }
+  .hero { padding-bottom: 120px; } /* espaço pro marquee */
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PLANS SECTION
+   ═══════════════════════════════════════════════════════════════════ */
+.plans-section {
+  position: relative;
+  background: #031211;
+  padding: var(--sp-24) 0 var(--sp-24) 0;
+  z-index: 10;
+}
+.section-header { text-align: center; margin-bottom: var(--sp-16); }
+.section-header h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--color-text-inverse); margin-bottom: var(--sp-4); }
+.section-header p { font-size: var(--text-lg); color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; }
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  position: relative;
+  z-index: 2;
+}
+
+.plan-card {
+  background: rgba(10,100,90,0.1);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-card);
+  padding: var(--sp-8) var(--sp-6);
+  display: flex; flex-direction: column;
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative;
+}
+.plan-card:hover {
+  transform: translateY(-8px);
+  background: rgba(10,100,90,0.2);
+  border-color: rgba(40,190,165,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.plan-card.highlight {
+  background: rgba(10,100,90,0.25);
+  border-color: var(--color-primary-light);
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.plan-card.highlight:hover { transform: scale(1.05) translateY(-8px); }
+
+.plan-name { font-size: var(--text-sm); font-weight: 700; color: var(--color-primary-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--sp-2); }
+.plan-mega { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800; color: var(--color-text-inverse); line-height: 1; margin-bottom: var(--sp-6); }
+.plan-mega span { font-size: 0.35em; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-left: 4px; }
+
+.plan-desc { font-size: var(--text-sm); color: rgba(255,255,255,0.7); margin-bottom: var(--sp-8); min-height: 50px; }
+
+.plan-price { margin-bottom: var(--sp-8); }
+.plan-price .currency { font-size: var(--text-md); color: var(--color-primary-light); font-weight: 700; vertical-align: super; }
+.plan-price .amount { font-family: var(--font-heading); font-size: 3rem; font-weight: 800; color: var(--color-text-inverse); line-height: 1; }
+.plan-price .cents { font-size: var(--text-lg); font-weight: 700; color: var(--color-text-inverse); }
+
+.plan-features { list-style: none; margin-bottom: var(--sp-8); flex-grow: 1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--sp-6); }
+.plan-features li { display: flex; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-2) 0; font-size: var(--text-sm); color: rgba(255,255,255,0.8); }
+.plan-features li iconify-icon { color: var(--color-primary-light); font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+@media (max-width: 1200px) {
+  .plans-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-12) var(--sp-6); }
+  .plan-card.highlight { transform: scale(1); }
+  .plan-card.highlight:hover { transform: translateY(-8px); }
+  .plan-desc { min-height: auto; }
+}
+@media (max-width: 640px) {
+  .plans-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BENEFITS SECTION
+   ═══════════════════════════════════════════════════════════════════ */
+.benefits-section {
+  position: relative;
+  background: #041514;
+  padding: var(--sp-24) 0;
+  z-index: 10;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+/* Background floating elements for benefits */
+.b-glow-1 { position: absolute; top: 10%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(40,190,165,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.b-glow-2 { position: absolute; bottom: 0; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,195,0,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-8);
+  margin-top: var(--sp-12);
+  position: relative;
+  z-index: 2;
+}
+
+.benefit-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-card);
+  padding: var(--sp-12) var(--sp-8);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-6);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+  backdrop-filter: blur(10px);
+}
+/* Shimmering hover effect inside the card */
+.benefit-card::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(40,190,165,0.1), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--ease-out);
+}
+.benefit-card:hover {
+  transform: translateY(-5px);
+  background: rgba(40,190,165,0.05);
+  border-color: rgba(40,190,165,0.2);
+  box-shadow: var(--shadow-md), 0 10px 30px rgba(40,190,165,0.1);
+}
+.benefit-card:hover::before { left: 200%; }
+
+.benefit-icon {
+  width: 64px; height: 64px; border-radius: 16px;
+  background: linear-gradient(135deg, rgba(40,190,165,0.2), rgba(10,100,90,0.4));
+  border: 1px solid rgba(40,190,165,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary-light);
+  font-size: 32px; flex-shrink: 0;
+  box-shadow: inset 0 2px 10px rgba(255,255,255,0.1);
+  transition: transform var(--duration-base) var(--ease-smooth), background var(--duration-base), color var(--duration-base);
+}
+.benefit-card:hover .benefit-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  box-shadow: var(--shadow-green);
+  border-color: var(--color-primary);
+}
+
+.benefit-content h3 {
+  font-size: var(--text-xl); color: var(--color-text-inverse); margin-bottom: var(--sp-3);
+}
+.benefit-content p {
+  font-size: var(--text-base); color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;
+}
+
+@media (max-width: 992px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+  .benefit-card { padding: var(--sp-8) var(--sp-6); gap: var(--sp-4); }
+  .benefit-icon { width: 56px; height: 56px; font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .benefit-card { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FAQ SECTION
+   ═══════════════════════════════════════════════════════════════════ */
+.faq-section {
+  position: relative;
+  background: #051A18;
+  padding: var(--sp-24) 0;
+  z-index: 10;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--sp-4);
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+  backdrop-filter: blur(10px);
+}
+.faq-item:hover {
+  background: rgba(40,190,165,0.03);
+  border-color: rgba(40,190,165,0.2);
+}
+.faq-item.active {
+  background: rgba(10,100,90,0.2);
+  border-color: rgba(40,190,165,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.faq-header {
+  padding: var(--sp-6) var(--sp-8);
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.faq-header h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg); font-weight: 600;
+  color: var(--color-text-inverse);
+  margin: 0;
+  transition: color var(--duration-base);
+}
+.faq-item.active .faq-header h3 {
+  color: var(--color-primary-light);
+}
+
+.faq-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%; background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary-light);
+  transition: all var(--duration-base) var(--ease-out);
+  flex-shrink: 0; margin-left: var(--sp-4);
+}
+.faq-item.active .faq-icon {
+  background: var(--color-primary); color: var(--color-text-inverse);
+  transform: rotate(45deg);
+  box-shadow: 0 0 15px rgba(40,190,165,0.4);
+}
+
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-smooth);
+}
+.faq-content {
+  padding: 0 var(--sp-8) var(--sp-6) var(--sp-8);
+  font-size: var(--text-md); color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .faq-header { padding: var(--sp-4) var(--sp-6); }
+  .faq-content { padding: 0 var(--sp-6) var(--sp-4) var(--sp-6); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER CTA & FOOTER
+   ═══════════════════════════════════════════════════════════════════ */
+.footer-cta {
+  background: linear-gradient(135deg, var(--color-primary-dark), #031211);
+  padding: var(--sp-20) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(40,190,165,0.2);
+}
+.footer-cta::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at center, rgba(40,190,165,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.footer-cta-inner {
+  position: relative; z-index: 2;
+  max-width: 600px; margin: 0 auto;
+}
+.footer-cta h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem); color: var(--color-text-inverse);
+  margin-bottom: var(--sp-4); line-height: 1.1;
+}
+.footer-cta p {
+  font-size: var(--text-lg); color: rgba(255,255,255,0.7);
+  margin-bottom: var(--sp-8);
+}
+
+.main-footer {
+  background: #020A09;
+  padding: var(--sp-12) 0 var(--sp-6) 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-content {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: var(--sp-8); margin-bottom: var(--sp-6);
+  flex-wrap: wrap; gap: var(--sp-8);
+}
+
+.footer-brand {
+  display: flex; flex-direction: column; gap: var(--sp-2);
+}
+.footer-brand-logo {
+  font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: 800; color: var(--color-text-inverse);
+}
+.disclaimer-parceiro {
+  display: inline-flex; flex-direction: column;
+  padding: var(--sp-3) var(--sp-4);
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; margin-top: var(--sp-2); max-width: max-content;
+}
+.disclaimer-parceiro span {
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.footer-links {
+  display: flex; gap: var(--sp-8);
+}
+.footer-links a {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.5);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--color-primary-light); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: var(--sp-4);
+}
+@media (max-width: 768px) {
+  .footer-content { flex-direction: column; align-items: center; text-align: center; }
+  .disclaimer-parceiro { align-items: center; margin-left: auto; margin-right: auto; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       HEADER GLASS PREMIUM
+       ═══════════════════════════════════════════════════════════════════ -->
+  <header class="header-glass" id="header">
+    <div class="container header-inner">
+      <a href="#" class="brand-wrapper">
+        <div class="brand-icon">
+          <iconify-icon icon="solar:bolt-circle-bold"></iconify-icon>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Sua Marca</span>
+          <span class="brand-sub">Agente Autorizado Algar</span>
+        </div>
+      </a>
+      
+      <div class="header-actions">
+        <div class="status-indicator">
+          <div class="pulse-dot"></div>
+          Atendimento Online
+        </div>
+        <a href="https://wa.me/5500000000000" class="btn btn-glass" target="_blank" rel="noopener noreferrer">
+          <iconify-icon icon="ic:baseline-whatsapp" width="20" style="color:var(--color-primary-light);"></iconify-icon>
+          <span>Falar com Especialista</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       HERO IMMERSIVE
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="hero grid-paper">
+    
+    <!-- Background Elements -->
+    <div class="glow glow-green" style="width:1000px;height:1000px;top:-30%;right:-10%;"></div>
+    <div class="glow glow-accent" style="width:600px;height:600px;bottom:-20%;left:-10%;"></div>
+    <div class="fiber-lines">
+      <span class="fl-1"></span>
+      <span class="fl-2"></span>
+      <span class="fl-3"></span>
+    </div>
+    
+    <!-- Partículas geradas via JS -->
+    <div id="particles" style="position:absolute;inset:0;pointer-events:none;z-index:1;"></div>
+
+    <div class="container hero-grid">
+      
+      <!-- Lado Esquerdo: Conteúdo -->
+      <div class="hero-content">
+        
+        <div class="overline-wrap reveal-up">
+          <span class="overline-tag">Novo</span>
+          <span class="overline-text">Tecnologia Wi-Fi 6 de última geração</span>
+        </div>
+        
+        <h1 class="hero-title reveal-up stagger-1">
+          <span class="fw-light">Chega de passar raiva com internet que cai.</span><br/>
+          Descubra a verdadeira fibra óptica <span class="shimmer-text">Premium</span>.
+        </h1>
+        
+        <p class="hero-desc reveal-up stagger-2">
+          Ultrapasse os limites de velocidade com a internet da Algar Telecom. Estabilidade absoluta para gamers, streaming em 4K simultâneo e home office sem interrupções.
+        </p>
+        
+        <div class="hero-ctas reveal-up stagger-3">
+          <a href="https://wa.me/5500000000000" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+            Garantir Minha Instalação Grátis
+            <iconify-icon icon="solar:arrow-right-line-duotone" width="20"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="features-list reveal-up stagger-4">
+          <div class="feature-item">
+            <iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon>
+            Instalação em 24h
+          </div>
+          <div class="feature-item">
+            <iconify-icon icon="solar:wifi-bold-duotone"></iconify-icon>
+            Modem Grátis
+          </div>
+          <div class="feature-item">
+            <iconify-icon icon="solar:headphones-round-bold-duotone"></iconify-icon>
+            Suporte Local
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Lado Direito: Card 3D Premium -->
+      <div class="hero-visual reveal-scale stagger-2">
+        
+        <div class="green-border-animated float-anim" style="width:100%;max-width:440px;">
+          <div class="glass-card-premium">
+            
+            <span class="badge badge-accent card-badge-top">★ Plano Mais Assinado</span>
+            
+            <h2 class="plan-speed">600<span>Mega</span></h2>
+            <p class="plan-target">O Plano Home Perfeito</p>
+            
+            <div class="plan-specs">
+              <div class="spec">
+                <div class="spec-icon"><iconify-icon icon="solar:tv-bold"></iconify-icon></div>
+                <div class="spec-text">Inclui Globoplay (c/ anúncios)</div>
+              </div>
+              <div class="spec">
+                <div class="spec-icon"><iconify-icon icon="solar:play-circle-bold"></iconify-icon></div>
+                <div class="spec-text">Redes sociais e vídeos fluidos</div>
+              </div>
+              <div class="spec">
+                <div class="spec-icon"><iconify-icon icon="solar:devices-bold"></iconify-icon></div>
+                <div class="spec-text">Conecta toda a casa</div>
+              </div>
+            </div>
+
+            <div class="price-block">
+              <div>
+                <span class="currency">R$</span>
+                <span class="amount">99</span>
+                <span class="cents">,90</span>
+              </div>
+              <div class="period">Fixo Mensal — Sem surpresas</div>
+            </div>
+
+            <button class="btn btn-primary" style="width:100%;font-size:var(--text-lg);padding:var(--sp-4);">
+              <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon>
+              Garantir esta Oferta
+            </button>
+            <p style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:var(--sp-3);font-family:var(--font-body);">*Sujeito a viabilidade técnica e análise de crédito.</p>
+
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+    <!-- Marquee Footer do Hero -->
+    <div class="hero-marquee reveal-fade stagger-4">
+      <div class="marquee-track">
+        <!-- 1st set -->
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Internet 100% Fibra Óptica</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Download e Upload Simétricos</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Sem Franquia de Dados</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Suporte Técnico Especializado 24/7</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Wi-Fi de Longo Alcance</div>
+        <!-- duplicated for seamless loop -->
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Internet 100% Fibra Óptica</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Download e Upload Simétricos</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Sem Franquia de Dados</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Suporte Técnico Especializado 24/7</div>
+        <div class="marquee-item"><iconify-icon icon="solar:star-fall-bold"></iconify-icon> Wi-Fi de Longo Alcance</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION PLANOS
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="plans-section" id="planos">
+    
+    <div class="glow glow-green" style="width:800px;height:800px;top:20%;left:-20%;"></div>
+    
+    <div class="container">
+      <div class="section-header reveal-up">
+        <h2>Escolha seu nível de <span class="shimmer-text">Poder</span></h2>
+        <p>Planos feitos sob medida para a sua necessidade. Todos incluem tecnologia 100% fibra óptica e modem Wi-Fi de alta performance grátis.</p>
+      </div>
+
+      <div class="plans-grid">
+        
+        <!-- Plano 1: Home -->
+        <div class="plan-card reveal-up stagger-1">
+          <div class="plan-name">Plano Home</div>
+          <div class="plan-mega">600<span>MB</span></div>
+          <p class="plan-desc">Sem travamentos: Navegue, estude e maratone séries com estabilidade total.</p>
+          
+          <div class="plan-price">
+            <span class="currency">R$</span><span class="amount">99</span><span class="cents">,90</span>
+            <div style="font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-top:4px;">por mês</div>
+          </div>
+          
+          <ul class="plan-features">
+            <li><iconify-icon icon="solar:tv-bold-duotone"></iconify-icon> Inclui Globoplay (c/ anúncios)</li>
+            <li><iconify-icon icon="solar:router-bold-duotone"></iconify-icon> Modem Wi-Fi incluso</li>
+            <li><iconify-icon icon="solar:rocket-bold-duotone"></iconify-icon> Instalação em 24h</li>
+          </ul>
+          
+          <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Home%20600MB" class="btn btn-primary btn-pulse" style="width:100%; margin-top:var(--sp-4);" target="_blank">Assinar Home</a>
+        </div>
+
+        <!-- Plano 2: Família (Highlight) -->
+        <div class="plan-card highlight green-border-animated reveal-up stagger-2" style="z-index: 10;">
+          <span class="badge badge-accent" style="position:absolute; top:-14px; left:50%; transform:translateX(-50%);">★ Mais Assinado</span>
+          <div class="plan-name" style="color:var(--color-text-inverse);">Plano Família</div>
+          <div class="plan-mega">700<span>MB</span></div>
+          <p class="plan-desc">Para a casa toda conectada ao mesmo tempo. Jogue e assista em 4K sem lag.</p>
+          
+          <div class="plan-price">
+            <span class="currency">R$</span><span class="amount">137</span><span class="cents">,80</span>
+            <div style="font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-top:4px;">por mês</div>
+          </div>
+          
+          <ul class="plan-features">
+            <li><iconify-icon icon="solar:tv-bold-duotone"></iconify-icon> Disney+ Padrão (c/ anúncios)</li>
+            <li><iconify-icon icon="solar:gamepad-bold-duotone"></iconify-icon> Ping super baixo p/ jogos</li>
+            <li><iconify-icon icon="solar:devices-bold-duotone"></iconify-icon> Conecta até 15 dispositivos</li>
+          </ul>
+          
+          <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Família%20700MB" class="btn btn-primary btn-pulse" style="width:100%; margin-top:var(--sp-4);" target="_blank">
+            <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon> Assinar Família
+          </a>
+        </div>
+
+        <!-- Plano 3: Cinema -->
+        <div class="plan-card reveal-up stagger-3">
+          <div class="plan-name">Plano Cinema</div>
+          <div class="plan-mega">800<span>MB</span></div>
+          <p class="plan-desc">Download e upload turbinados. A verdadeira experiência de cinema na sua sala.</p>
+          
+          <div class="plan-price">
+            <span class="currency">R$</span><span class="amount">159</span><span class="cents">,70</span>
+            <div style="font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-top:4px;">por mês</div>
+          </div>
+          
+          <ul class="plan-features">
+            <li><iconify-icon icon="solar:clapperboard-play-bold-duotone"></iconify-icon> HBO Max (c/ anúncios) + Telecine</li>
+            <li><iconify-icon icon="solar:4k-bold-duotone"></iconify-icon> Suporta múltiplas telas 4K</li>
+            <li><iconify-icon icon="solar:cloud-download-bold-duotone"></iconify-icon> Download gigas em minutos</li>
+          </ul>
+          
+          <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Cinema%20800MB" class="btn btn-primary btn-pulse" style="width:100%; margin-top:var(--sp-4);" target="_blank">Assinar Cinema</a>
+        </div>
+
+        <!-- Plano 4: Premium -->
+        <div class="plan-card reveal-up stagger-4">
+          <div class="plan-name">Plano Premium</div>
+          <div class="plan-mega">1<span>GB</span></div>
+          <p class="plan-desc">O ápice da performance. Sem limites para criadores, gamers e streamings pesados.</p>
+          
+          <div class="plan-price">
+            <span class="currency">R$</span><span class="amount">232</span><span class="cents">,60</span>
+            <div style="font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-top:4px;">por mês</div>
+          </div>
+          
+          <ul class="plan-features">
+            <li><iconify-icon icon="solar:crown-star-bold-duotone"></iconify-icon> Disney+, HBO Max, Deezer</li>
+            <li><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon> Performance máxima extrema</li>
+            <li><iconify-icon icon="solar:server-square-bold-duotone"></iconify-icon> Para casas super conectadas</li>
+          </ul>
+          
+          <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Premium%201GB" class="btn btn-primary btn-pulse" style="width:100%; margin-top:var(--sp-4);" target="_blank">Assinar Premium</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       BENEFITS SECTION
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="benefits-section" id="vantagens">
+    <div class="b-glow-1"></div>
+    <div class="b-glow-2"></div>
+    <div class="container">
+      
+      <div class="section-header reveal-up">
+        <h2>Por que escolher a <span class="shimmer-text">Algar Telecom?</span></h2>
+        <p>A união perfeita entre tecnologia de ponta e atendimento humanizado. Descubra os benefícios exclusivos de ser nosso cliente.</p>
+      </div>
+
+      <div class="benefits-grid">
+        
+        <!-- Benefit 1 -->
+        <div class="benefit-card animated-bg reveal-up stagger-1">
+          <div class="benefit-icon">
+            <iconify-icon icon="solar:routing-3-bold-duotone"></iconify-icon>
+          </div>
+          <div class="benefit-content">
+            <h3>Pura Fibra Óptica (Zero Cobre)</h3>
+            <p>Adeus quedas! Conexão direta da nossa central para o seu modem, sem perda de sinal ou interferências climáticas.</p>
+          </div>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="benefit-card animated-bg reveal-up stagger-2">
+          <div class="benefit-icon">
+            <iconify-icon icon="solar:rocket-bold-duotone"></iconify-icon>
+          </div>
+          <div class="benefit-content">
+            <h3>Instalação Express e Zero Taxas</h3>
+            <p>Agendamento flexível com equipe especializada. Sem taxa de adesão, surpresas na fatura ou enrolação.</p>
+          </div>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="benefit-card animated-bg reveal-up stagger-3">
+          <div class="benefit-icon">
+            <iconify-icon icon="solar:headphones-round-bold-duotone"></iconify-icon>
+          </div>
+          <div class="benefit-content">
+            <h3>Suporte Humanizado 24h</h3>
+            <p>Atendimento feito por pessoas de verdade, prontas para te ajudar a qualquer momento do dia ou da noite. Você nunca fica na mão.</p>
+          </div>
+        </div>
+
+        <!-- Benefit 4 -->
+        <div class="benefit-card animated-bg reveal-up stagger-4">
+          <div class="benefit-icon">
+            <iconify-icon icon="solar:wifi-bold-duotone"></iconify-icon>
+          </div>
+          <div class="benefit-content">
+            <h3>Wi-Fi de Alta Potência Incluso</h3>
+            <p>Modem Wi-Fi inteligente (Dual Band / Wi-Fi 6) cedido em comodato, garantindo o máximo de velocidade para todos os cômodos.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       FAQ SECTION
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      
+      <div class="section-header reveal-up">
+        <h2>Dúvidas <span class="shimmer-text">Frequentes</span></h2>
+        <p>Ainda não tem certeza? Veja as perguntas mais comuns dos nossos clientes antes de assinar.</p>
+      </div>
+
+      <div class="faq-container">
+        
+        <div class="faq-item reveal-up stagger-1">
+          <div class="faq-header">
+            <h3>O que é a internet 100% Fibra Óptica?</h3>
+            <div class="faq-icon"><iconify-icon icon="solar:add-circle-linear" width="24"></iconify-icon></div>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Diferente das conexões antigas, nossa fibra óptica vai direto da central até dentro da sua casa, sem emendas com cabos de cobre. Isso garante que não haja perda de velocidade e você receba exatamente a banda contratada, livre de interferências magnéticas ou climáticas.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up stagger-2">
+          <div class="faq-header">
+            <h3>Como funciona a instalação grátis?</h3>
+            <div class="faq-icon"><iconify-icon icon="solar:add-circle-linear" width="24"></iconify-icon></div>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Após aprovação do seu pedido pelo WhatsApp, nossa equipe agenda a instalação no horário de sua preferência (muitas vezes no mesmo dia ou em até 24h). O técnico fará todo o cabeamento e configuração do Wi-Fi sem cobrar nenhuma taxa de adesão ou visita técnica.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up stagger-3">
+          <div class="faq-header">
+            <h3>Preciso comprar um modem Wi-Fi?</h3>
+            <div class="faq-icon"><iconify-icon icon="solar:add-circle-linear" width="24"></iconify-icon></div>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Não. A Algar Telecom fornece um modem Wi-Fi de alta performance (tecnologia Dual Band) em regime de comodato. Ou seja, você usa o equipamento gratuitamente enquanto for nosso cliente, e nós garantimos a manutenção em caso de falhas.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up stagger-4">
+          <div class="faq-header">
+            <h3>Os planos possuem franquia de dados?</h3>
+            <div class="faq-icon"><iconify-icon icon="solar:add-circle-linear" width="24"></iconify-icon></div>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Nossos planos residenciais de fibra óptica são <strong>100% ilimitados</strong>. Você pode fazer downloads gigantes, assistir a filmes em 4K e jogar online o mês inteiro, sem medo da sua velocidade ser reduzida ou bloqueada.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       FOOTER CTA & FOOTER FINAL
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="footer-cta">
+    <div class="container footer-cta-inner reveal-up">
+      <h2>Cansado da sua operadora atual?</h2>
+      <p>Fale com nosso time agora pelo WhatsApp. Aprovando hoje, a Instalação Rápida e o Modem Wi-Fi são por nossa conta.</p>
+      <a href="https://wa.me/5500000000000" class="btn btn-primary btn-lg btn-pulse" style="box-shadow: 0 10px 40px rgba(255,195,0,0.5);" target="_blank">
+        <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon> Assinar Agora pelo WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        
+        <div class="footer-brand">
+          <div class="footer-brand-logo">Sua Marca</div>
+          <p style="font-size:12px; color:rgba(255,255,255,0.4); max-width:300px;">
+            Conectando você ao que mais importa com a tecnologia da melhor internet do Brasil.
+          </p>
+          
+          <div class="disclaimer-parceiro">
+            <span>Agente Autorizado</span>
+            <svg viewBox="0 0 120 30" height="20" style="margin-top:6px; opacity:0.6;"><text x="0" y="20" fill="white" font-family="sans-serif" font-weight="bold" font-size="18">Algar Telecom</text></svg>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#planos">Planos</a>
+          <a href="#vantagens">Vantagens</a>
+          <a href="#faq">FAQ</a>
+          <a href="#">Política de Privacidade</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>&copy; 2026 Sua Marca - Agente Autorizado Algar Telecom. Todos os direitos reservados.</div>
+        <div>CNPJ: 00.000.000/0001-00</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // 1. Header Blur on Scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }, { passive: true });
+
+    // 2. Scroll Reveal Animations (Entra e Sai)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        } else {
+          entry.target.classList.remove('revealed');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale, .reveal-fade').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 3. Particles generation
+    const container = document.getElementById('particles');
+    if (container) {
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 3 + 1;
+        const startX = Math.random() * 100;
+        const duration = Math.random() * 8 + 4;
+        const delay = Math.random() * 5;
+        
+        particle.style.cssText = `
+          position: absolute;
+          bottom: -10px;
+          left: ${startX}%;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${Math.random() > 0.5 ? 'var(--color-primary-light)' : 'rgba(255,255,255,0.5)'};
+          border-radius: 50%;
+          opacity: 0;
+          animation: particle-float ${duration}s ease-in ${delay}s infinite;
+        `;
+        container.appendChild(particle);
+      }
+    }
+
+    // 4. FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-header');
+      const body = item.querySelector('.faq-body');
+      
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all
+        faqItems.forEach(faq => {
+          faq.classList.remove('active');
+          faq.querySelector('.faq-body').style.maxHeight = null;
+        });
+        
+        // Open clicked if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+  
+  <style>
+    @keyframes particle-float {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px) scale(0); opacity: 0; }
+    }
+  </style>
+
+</body>
+</html>

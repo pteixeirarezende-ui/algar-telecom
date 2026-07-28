@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="scroll-behavior:smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Algar Telecom — Design System | Agente Autorizado</title>
+<meta name="description" content="Design System base para a landing page de venda de internet fibra — Agente Autorizado Algar Telecom. Tokens de cor, tipografia, componentes, efeitos e animações."/>
+
+<!-- Fonts: Exo (headings/prices) + Montserrat (body/UI) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- Iconify for icons -->
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   ALGAR TELECOM — DESIGN SYSTEM TOKENS & FOUNDATION
+   Agente Autorizado · Internet Fibra
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── DESIGN TOKENS ─── */
+:root {
+  /* ▸ Primária — Verde Algar */
+  --color-primary: #28BEA5;
+  --color-primary-dark: #0A645A;
+  --color-primary-medium: #239687;
+  --color-primary-light: #1EFFD2;
+  --color-primary-light-alt: #00EBB0;
+
+  /* ▸ Acento Caloroso — Amarelo (CTAs e pontos de conversão) */
+  --color-accent: #FFC300;
+  --color-accent-light: #FFD22D;
+  --color-accent-lighter: #FFE800;
+  --color-accent-text: #412402; /* Texto sobre amarelo — alto contraste */
+
+  /* ▸ Neutros */
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #F7FAF9;
+  --color-bg-muted: #EDF2F0;
+  --color-text: #3C4646;
+  --color-text-secondary: #8C9696;
+  --color-text-inverse: #FFFFFF;
+
+  /* ▸ Semânticos (adição — validar com cliente) */
+  --color-success: #28BEA5;
+  --color-error: #E04B4B;
+  --color-warning: #FFC300;
+  --color-info: #239687;
+
+  /* ▸ Superfícies (derivados para glassmorphism e cards) */
+  --color-surface: rgba(255,255,255,0.75);
+  --color-surface-dark: rgba(10,100,90,0.95);
+  --color-surface-glass: rgba(255,255,255,0.08);
+  --color-border: rgba(40,190,165,0.15);
+  --color-border-light: rgba(60,70,70,0.08);
+
+  /* ▸ Tipografia */
+  --font-heading: 'Exo', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* ▸ Font Scale (modular) */
+  --text-xs: 0.625rem;    /* 10px */
+  --text-sm: 0.75rem;     /* 12px */
+  --text-base: 0.875rem;  /* 14px */
+  --text-md: 1rem;        /* 16px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 2rem;       /* 32px */
+  --text-3xl: 2.5rem;     /* 40px */
+  --text-4xl: 3.5rem;     /* 56px */
+  --text-5xl: 4.5rem;     /* 72px */
+  --text-price: 3rem;     /* 48px — preços em destaque */
+
+  /* ▸ Espaçamento (grid 4px base) */
+  --sp-1: 0.25rem;   /* 4px */
+  --sp-2: 0.5rem;    /* 8px */
+  --sp-3: 0.75rem;   /* 12px */
+  --sp-4: 1rem;      /* 16px */
+  --sp-6: 1.5rem;    /* 24px */
+  --sp-8: 2rem;      /* 32px */
+  --sp-12: 3rem;     /* 48px */
+  --sp-16: 4rem;     /* 64px */
+  --sp-20: 5rem;     /* 80px */
+  --sp-24: 6rem;     /* 96px */
+  --sp-32: 8rem;     /* 128px */
+
+  /* ▸ Layout */
+  --max-width: 1280px;
+  --container-px: clamp(1rem, 4vw, 3rem);
+
+  /* ▸ Raios de Borda */
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-input: 8px;
+  --radius-badge: 20px;
+  --radius-full: 9999px;
+
+  /* ▸ Sombras (leves, acessíveis) */
+  --shadow-sm: 0 2px 8px rgba(10,100,90,0.06);
+  --shadow-md: 0 8px 24px rgba(10,100,90,0.08), 0 2px 6px rgba(10,100,90,0.04);
+  --shadow-lg: 0 16px 48px rgba(10,100,90,0.10), 0 4px 12px rgba(10,100,90,0.06);
+  --shadow-xl: 0 24px 64px rgba(10,100,90,0.14), 0 6px 18px rgba(10,100,90,0.08);
+  --shadow-green: 0 4px 24px rgba(40,190,165,0.20);
+  --shadow-accent: 0 4px 24px rgba(255,195,0,0.25);
+  --shadow-dark: 0 20px 60px rgba(10,100,90,0.40), 0 6px 18px rgba(10,100,90,0.20);
+
+  /* ▸ Transições */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+  --duration-reveal: 0.9s;
+}
+
+/* ─── RESET ─── */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+img { display:block; max-width:100%; }
+a { text-decoration:none; color:inherit; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-md);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── SUBTLE DOT PATTERN OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: radial-gradient(circle, var(--color-primary) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+/* ─── TIPOGRAFIA ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-dark);
+}
+
+h1 { font-size: var(--text-5xl); font-weight: 800; }
+h2 { font-size: var(--text-4xl); font-weight: 700; }
+h3 { font-size: var(--text-2xl); font-weight: 700; }
+h4 { font-size: var(--text-xl); font-weight: 600; }
+h5 { font-size: var(--text-lg); font-weight: 600; }
+h6 { font-size: var(--text-md); font-weight: 600; }
+
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+
+/* Overline / Pre-title */
+.overline {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ─── LAYOUT ─── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
+}
+
+/* ─── DEGRADÊS OFICIAIS (máx 2 cores, ≥1 primária) ─── */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+.gradient-fresh {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+.gradient-warm {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
+.gradient-hero {
+  background: linear-gradient(180deg, var(--color-primary-dark) 0%, #062E29 100%);
+}
+
+/* ─── BOTÕES ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-base);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-btn);
+}
+
+/* Shimmer sweep on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.5s var(--ease-out);
+}
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Primary CTA — Amarelo */
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: var(--shadow-accent);
+}
+.btn-primary:hover {
+  background: var(--color-accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255,195,0,0.35);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary — Verde outline */
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-green);
+}
+
+/* CTA sobre fundo escuro */
+.btn-primary-dark {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: var(--shadow-accent);
+}
+.btn-primary-dark:hover {
+  background: var(--color-accent-lighter);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Ghost — texto verde */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  padding-left: 0;
+  padding-right: 0;
+}
+.btn-ghost:hover { color: var(--color-primary-dark); }
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--duration-base) var(--ease-out);
+}
+.btn-ghost:hover::after { width: 100%; }
+.btn-ghost::before { display: none; }
+
+/* Large CTA */
+.btn-lg {
+  padding: var(--sp-4) var(--sp-8);
+  font-size: var(--text-md);
+  border-radius: var(--radius-btn);
+}
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-card);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-slow) var(--ease-smooth);
+  box-shadow: var(--shadow-md);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ─── GLASS CARD ─── */
+.glass-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: all var(--duration-base) var(--ease-out);
+}
+.glass-card:hover {
+  border-color: rgba(40,190,165,0.3);
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-4px);
+}
+
+/* ─── PLAN CARD ─── */
+.plan-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-card);
+  padding: var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-slow) var(--ease-smooth);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+.plan-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+.plan-card .plan-header {
+  margin-bottom: var(--sp-6);
+}
+.plan-card .plan-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--sp-1);
+}
+.plan-card .plan-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+.plan-card .plan-price {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-price);
+  color: var(--color-primary-dark);
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+.plan-card .plan-price-period {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+.plan-card .plan-benefits {
+  list-style: none;
+  margin: var(--sp-6) 0;
+  flex: 1;
+}
+.plan-card .plan-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.plan-card .plan-benefits li:last-child {
+  border-bottom: none;
+}
+.plan-card .plan-benefits li iconify-icon {
+  color: var(--color-primary);
+  font-size: 1.1em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Popular card highlight */
+.plan-card.popular {
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-green), 0 0 0 1px var(--color-primary);
+}
+.plan-card.popular:hover {
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(40,190,165,0.15);
+}
+
+/* Plan card on dark bg */
+.plan-card-dark {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-card);
+  padding: var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-slow) var(--ease-smooth);
+  display: flex;
+  flex-direction: column;
+}
+.plan-card-dark:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(40,190,165,0.3);
+}
+.plan-card-dark .plan-name { color: var(--color-text-inverse); }
+.plan-card-dark .plan-subtitle { color: rgba(255,255,255,0.6); }
+.plan-card-dark .plan-price { color: var(--color-text-inverse); }
+.plan-card-dark .plan-price-period { color: rgba(255,255,255,0.5); }
+.plan-card-dark .plan-benefits li { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.08); }
+.plan-card-dark.popular { border-color: var(--color-accent); box-shadow: 0 0 40px rgba(255,195,0,0.1); }
+
+/* ─── BADGES ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-badge);
+}
+.badge-popular {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: 0 2px 12px rgba(255,195,0,0.3);
+}
+.badge-green {
+  background: rgba(40,190,165,0.12);
+  color: var(--color-primary);
+  border: 1px solid rgba(40,190,165,0.2);
+}
+.badge-outline {
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+
+/* ─── INPUT / CONSULTA (genérico e reutilizável) ─── */
+.input-group {
+  display: flex;
+  border-radius: var(--radius-input);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--color-border-light);
+  transition: border-color var(--duration-base) var(--ease-out);
+  background: var(--color-bg);
+}
+.input-group:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-green);
+}
+.input-group input {
+  flex: 1;
+  border: none;
+  padding: var(--sp-4) var(--sp-4);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text);
+  background: transparent;
+  outline: none;
+}
+.input-group input::placeholder {
+  color: var(--color-text-secondary);
+}
+.input-group button {
+  border: none;
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  padding: var(--sp-4) var(--sp-6);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-base);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  white-space: nowrap;
+}
+.input-group button:hover {
+  background: var(--color-accent-light);
+}
+
+/* Dark variant */
+.input-group-dark {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+}
+.input-group-dark:focus-within {
+  border-color: var(--color-primary-light);
+}
+.input-group-dark input {
+  color: var(--color-text-inverse);
+}
+.input-group-dark input::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* ─── STAT BLOCK ─── */
+.stat-block { text-align: left; }
+.stat-value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-3xl);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--sp-1);
+}
+.stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+/* ─── TESTIMONIAL ─── */
+.testimonial {
+  position: relative;
+  padding: var(--sp-8);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
+  transition: all var(--duration-base) var(--ease-out);
+}
+.testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.testimonial::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: var(--sp-6);
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-primary-light);
+  opacity: 0.3;
+  line-height: 1;
+}
+.testimonial-text {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: var(--sp-6);
+  font-style: italic;
+}
+.testimonial-author {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-primary-dark);
+}
+.testimonial-location {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.testimonial-source {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: var(--sp-1);
+}
+
+/* ─── DECORATIVE ELEMENTS ─── */
+.green-line {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+.green-line-left {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), transparent);
+}
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(40,190,165,0.5); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(40,190,165,0); }
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── SHIMMER TEXT ─── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 25%,
+    var(--color-accent) 50%,
+    var(--color-primary-light) 75%,
+    var(--color-primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── ANIMATED GREEN BORDER (rotating conic) ─── */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes border-rotate { to { --border-angle: 360deg; } }
+
+.green-border-animated {
+  position: relative;
+  border-radius: var(--radius-card);
+}
+.green-border-animated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 30%,
+    var(--color-primary) 50%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── SCROLL REVEAL ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reveal-up { opacity: 0; transform: translateY(40px); transition: all var(--duration-reveal) var(--ease-out); }
+.reveal-left { opacity: 0; transform: translateX(-30px); transition: all var(--duration-reveal) var(--ease-out); }
+.reveal-scale { opacity: 0; transform: scale(0.9); transition: all var(--duration-reveal) var(--ease-out); }
+.reveal-fade { opacity: 0; transition: opacity var(--duration-reveal) var(--ease-out); }
+
+.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+
+/* ─── AMBIENT GLOW ─── */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-green {
+  background: radial-gradient(ellipse, rgba(40,190,165,0.12), transparent 70%);
+}
+.glow-accent {
+  background: radial-gradient(ellipse, rgba(255,195,0,0.08), transparent 70%);
+}
+
+/* ─── MARQUEE ─── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ─── SCROLL INDICATOR ─── */
+@keyframes scroll-pulse {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+.scroll-indicator-line {
+  width: 2px;
+  height: 40px;
+  background: var(--color-primary-light);
+  animation: scroll-pulse 2s ease-in-out infinite;
+  transform-origin: top;
+  border-radius: 1px;
+}
+
+/* ─── HOVER LIFT ─── */
+.hover-lift { transition: transform var(--duration-base) var(--ease-out); }
+.hover-lift:hover { transform: translateY(-4px); }
+
+/* ─── FLOATING ANIMATION ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float { animation: float 3s ease-in-out infinite; }
+
+/* ─── PARTICLE FIELD ─── */
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* ─── SPEED LINES (fiber concept) ─── */
+@keyframes speed-line {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+/* ─── RESPONSIVE GRID ─── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-8); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-8); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-6); }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   DS SHOWCASE PAGE — styles below are ONLY for this showcase file
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Nav */
+.ds-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border-light);
+  transition: all var(--duration-base) var(--ease-out);
+}
+.ds-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.ds-nav-brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.ds-nav-brand iconify-icon {
+  color: var(--color-primary);
+}
+.ds-nav-links {
+  display: flex;
+  gap: var(--sp-1);
+}
+.ds-nav-link {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-btn);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.ds-nav-link:hover {
+  color: var(--color-primary);
+  background: rgba(40,190,165,0.06);
+}
+
+/* Hero */
+.ds-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Section */
+.ds-section {
+  padding: var(--sp-24) 0;
+  position: relative;
+}
+.ds-section + .ds-section {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.ds-section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--sp-4);
+}
+.ds-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  margin-bottom: var(--sp-4);
+  line-height: 1.15;
+  color: var(--color-primary-dark);
+}
+.ds-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  max-width: 640px;
+  margin-bottom: var(--sp-12);
+  line-height: 1.7;
+}
+
+/* Theme helpers for dark sections */
+.theme-dark {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
+}
+.theme-dark .ds-heading { color: var(--color-text-inverse); }
+.theme-dark .ds-desc { color: rgba(255,255,255,0.65); }
+.theme-dark .ds-section-title { color: var(--color-primary-light); }
+
+/* Color swatch */
+.swatch-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--sp-4);
+}
+.swatch {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+.swatch:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.swatch-color {
+  height: 80px;
+}
+.swatch-info {
+  padding: var(--sp-3) var(--sp-3);
+  background: white;
+}
+.swatch-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.swatch-hex {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+.swatch-var {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+/* Type showcase */
+.type-row {
+  padding: var(--sp-6) var(--sp-8);
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--sp-3);
+}
+.type-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+  font-size: var(--text-xs);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--color-text-secondary);
+}
+.type-tag {
+  padding: 2px 8px;
+  background: rgba(40,190,165,0.1);
+  color: var(--color-primary);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+}
+
+/* Spacing visual */
+.space-visual {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-3);
+}
+.space-bar {
+  height: 24px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  border-radius: 4px;
+  opacity: 0.8;
+}
+.space-label {
+  font-size: var(--text-xs);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+/* Showcase card */
+.showcase-card {
+  padding: var(--sp-8);
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-card);
+}
+.showcase-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--sp-6);
+}
+
+/* Demo flex */
+.demo-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: center;
+}
+
+/* Effect box */
+.effect-box {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--sp-8);
+}
+
+/* Grid paper background for dark sections */
+.grid-paper {
+  background-image:
+    linear-gradient(rgba(40,190,165,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40,190,165,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Fiber speed lines background */
+@keyframes fiber-line-1 { 0% { left: -20%; opacity: 0; } 30% { opacity: 0.6; } 100% { left: 120%; opacity: 0; } }
+@keyframes fiber-line-2 { 0% { left: -30%; opacity: 0; } 40% { opacity: 0.4; } 100% { left: 130%; opacity: 0; } }
+@keyframes fiber-line-3 { 0% { left: -10%; opacity: 0; } 20% { opacity: 0.3; } 100% { left: 110%; opacity: 0; } }
+
+.fiber-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fiber-lines::before,
+.fiber-lines::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 200px;
+  background: linear-gradient(90deg, transparent, var(--color-primary-light), transparent);
+}
+.fiber-lines::before {
+  top: 30%;
+  animation: fiber-line-1 4s linear infinite;
+}
+.fiber-lines::after {
+  top: 65%;
+  animation: fiber-line-2 5.5s linear infinite 1s;
+}
+
+/* Responsive nav hide on mobile */
+@media (max-width: 768px) {
+  .ds-nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ STICKY NAV ═══════════════ -->
+<nav class="ds-nav" id="ds-nav">
+  <div class="container ds-nav-inner">
+    <a href="#" class="ds-nav-brand">
+      <iconify-icon icon="solar:bolt-circle-bold" width="24"></iconify-icon>
+      ALGAR DS
+    </a>
+    <div class="ds-nav-links">
+      <a href="#colors" class="ds-nav-link">Cores</a>
+      <a href="#typography" class="ds-nav-link">Tipografia</a>
+      <a href="#spacing" class="ds-nav-link">Espaçamento</a>
+      <a href="#components" class="ds-nav-link">Componentes</a>
+      <a href="#effects" class="ds-nav-link">Efeitos</a>
+      <a href="#patterns" class="ds-nav-link">Padrões</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="ds-hero gradient-hero">
+  <!-- Fiber speed lines -->
+  <div class="fiber-lines"></div>
+  <div style="position:absolute;top:20%;left:10%;width:300px;height:1px;background:linear-gradient(90deg,transparent,var(--color-primary-light),transparent);animation:fiber-line-3 6s linear infinite 2s;"></div>
+
+  <!-- Ambient glows -->
+  <div class="glow glow-green" style="width:800px;height:800px;top:-200px;right:-200px;"></div>
+  <div class="glow glow-accent" style="width:400px;height:400px;bottom:-100px;left:-100px;"></div>
+
+  <!-- Particle dots -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;" id="particles"></div>
+
+  <div style="position:relative;z-index:2;max-width:900px;padding:0 var(--sp-8);">
+    <!-- Overline -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:var(--sp-3);margin-bottom:var(--sp-6);">
+      <div class="pulse-dot"></div>
+      <span class="overline" style="color:var(--color-primary-light);">Agente Autorizado Algar Telecom</span>
+    </div>
+
+    <!-- Title with shimmer -->
+    <h1 style="color:var(--color-text-inverse);font-size:clamp(2.5rem,7vw,5rem);font-weight:800;margin-bottom:var(--sp-6);line-height:1.05;">
+      Design <span class="shimmer-text" style="font-weight:800;">System</span>
+    </h1>
+
+    <p style="color:rgba(255,255,255,0.7);font-size:var(--text-base);max-width:600px;margin:0 auto var(--sp-8);line-height:1.75;font-family:var(--font-body);font-weight:400;">
+      A fundação visual para a landing page de internet fibra — tokens de cor, tipografia, componentes e padrões que traduzem tecnologia e confiança da Algar Telecom em linguagem digital premium.
+    </p>
+
+    <div class="green-line" style="margin:0 auto var(--sp-8);"></div>
+
+    <div style="display:flex;justify-content:center;gap:var(--sp-4);flex-wrap:wrap;">
+      <a href="#colors" class="btn btn-primary-dark btn-lg">Explorar Tokens</a>
+      <a href="#components" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:var(--color-text-inverse);">Ver Componentes</a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div style="margin-top:var(--sp-20);display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);">
+      <span style="font-family:var(--font-heading);font-size:var(--text-xs);letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Rolar</span>
+      <div class="scroll-indicator-line"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 01. CORES ═══════════════ -->
+<section id="colors" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title reveal-up">01 / Paleta de Cores</p>
+    <h2 class="ds-heading reveal-up stagger-1">Verde Algar, Calor Amarelo</h2>
+    <p class="ds-desc reveal-up stagger-2">Cores extraídas da identidade oficial Algar Telecom. O verde transmite tecnologia e confiança; o amarelo, calor e urgência nos pontos de conversão. Nunca usamos cores fora desta paleta.</p>
+
+    <!-- Primária -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-4);" class="reveal-up stagger-2">Primária — Verde Algar</h4>
+    <div class="swatch-row reveal-up stagger-3" style="margin-bottom:var(--sp-8);">
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-primary);"></div>
+        <div class="swatch-info"><div class="swatch-name">Primary Base</div><div class="swatch-hex">#28BEA5</div><div class="swatch-var">--color-primary</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-primary-dark);"></div>
+        <div class="swatch-info"><div class="swatch-name">Primary Dark</div><div class="swatch-hex">#0A645A</div><div class="swatch-var">--color-primary-dark</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-primary-medium);"></div>
+        <div class="swatch-info"><div class="swatch-name">Primary Medium</div><div class="swatch-hex">#239687</div><div class="swatch-var">--color-primary-medium</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-primary-light);"></div>
+        <div class="swatch-info"><div class="swatch-name">Primary Light</div><div class="swatch-hex">#1EFFD2</div><div class="swatch-var">--color-primary-light</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-primary-light-alt);"></div>
+        <div class="swatch-info"><div class="swatch-name">Light Alt</div><div class="swatch-hex">#00EBB0</div><div class="swatch-var">--color-primary-light-alt</div></div>
+      </div>
+    </div>
+
+    <!-- Acento -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-4);" class="reveal-up">Acento Caloroso — Amarelo (CTAs)</h4>
+    <div class="swatch-row reveal-up stagger-1" style="margin-bottom:var(--sp-8);">
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-accent);"></div>
+        <div class="swatch-info"><div class="swatch-name">Accent Base</div><div class="swatch-hex">#FFC300</div><div class="swatch-var">--color-accent</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-accent-light);"></div>
+        <div class="swatch-info"><div class="swatch-name">Accent Light</div><div class="swatch-hex">#FFD22D</div><div class="swatch-var">--color-accent-light</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-accent-lighter);"></div>
+        <div class="swatch-info"><div class="swatch-name">Accent Lighter</div><div class="swatch-hex">#FFE800</div><div class="swatch-var">--color-accent-lighter</div></div>
+      </div>
+    </div>
+
+    <!-- Neutros -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-4);" class="reveal-up">Neutros</h4>
+    <div class="swatch-row reveal-up stagger-1" style="margin-bottom:var(--sp-8);">
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-bg);border:1px solid #eee;"></div>
+        <div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-var">--color-bg</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-text);"></div>
+        <div class="swatch-info"><div class="swatch-name">Texto Principal</div><div class="swatch-hex">#3C4646</div><div class="swatch-var">--color-text</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--color-text-secondary);"></div>
+        <div class="swatch-info"><div class="swatch-name">Texto Secundário</div><div class="swatch-hex">#8C9696</div><div class="swatch-var">--color-text-secondary</div></div>
+      </div>
+    </div>
+
+    <!-- Degradês -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-4);" class="reveal-up">Degradês Oficiais (máx 2 cores, ≥1 primária)</h4>
+    <div class="swatch-row reveal-up stagger-1">
+      <div class="swatch">
+        <div class="swatch-color gradient-primary"></div>
+        <div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#28BEA5 → #0A645A</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color gradient-fresh"></div>
+        <div class="swatch-info"><div class="swatch-name">Fresh</div><div class="swatch-hex">#1EFFD2 → #28BEA5</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color gradient-warm"></div>
+        <div class="swatch-info"><div class="swatch-name">Warm</div><div class="swatch-hex">#28BEA5 → #FFC300</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color gradient-hero"></div>
+        <div class="swatch-info"><div class="swatch-name">Hero Dark</div><div class="swatch-hex">#0A645A → #062E29</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 02. TIPOGRAFIA ═══════════════ -->
+<section id="typography" class="ds-section" style="background:var(--color-bg-soft);">
+  <div class="container">
+    <p class="ds-section-title reveal-up">02 / Tipografia</p>
+    <h2 class="ds-heading reveal-up stagger-1">Confiança e Clareza</h2>
+    <p class="ds-desc reveal-up stagger-2">Exo para títulos e preços — transmite tecnologia e confiança com seus pesos pesados. Montserrat para corpo de texto — garante legibilidade em textos longos como FAQ e depoimentos.</p>
+
+    <!-- Exo -->
+    <div class="type-row reveal-up stagger-2" style="margin-bottom:var(--sp-6);">
+      <p style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--sp-6);">Família Display — Títulos & Preços</p>
+      <h1 style="font-size:clamp(2.5rem,5vw,4.5rem);margin-bottom:var(--sp-4);">Exo</h1>
+      <p style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-primary);margin-bottom:var(--sp-6);font-weight:600;">Internet fibra que conecta sua vida.</p>
+      <div style="display:flex;gap:var(--sp-6);flex-wrap:wrap;">
+        <div><span class="type-tag">400 Regular</span><p style="font-family:var(--font-heading);font-weight:400;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">500 Medium</span><p style="font-family:var(--font-heading);font-weight:500;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">600 SemiBold</span><p style="font-family:var(--font-heading);font-weight:600;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">700 Bold</span><p style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">800 ExtraBold</span><p style="font-family:var(--font-heading);font-weight:800;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+      </div>
+    </div>
+
+    <!-- Montserrat -->
+    <div class="type-row reveal-up stagger-3" style="margin-bottom:var(--sp-12);">
+      <p style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--sp-6);">Família Corpo — Textos Longos</p>
+      <h3 style="font-family:var(--font-body);font-weight:700;font-size:var(--text-2xl);margin-bottom:var(--sp-4);">Montserrat</h3>
+      <p style="font-family:var(--font-body);font-weight:400;font-size:var(--text-md);max-width:600px;line-height:1.75;color:var(--color-text);margin-bottom:var(--sp-6);">Tipografia limpa e moderna para textos de corpo. Usada em FAQ, depoimentos e descrições longas onde a legibilidade é prioridade.</p>
+      <div style="display:flex;gap:var(--sp-6);flex-wrap:wrap;">
+        <div><span class="type-tag">400 Regular</span><p style="font-family:var(--font-body);font-weight:400;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">600 SemiBold</span><p style="font-family:var(--font-body);font-weight:600;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">700 Bold</span><p style="font-family:var(--font-body);font-weight:700;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+        <div><span class="type-tag">800 ExtraBold</span><p style="font-family:var(--font-body);font-weight:800;font-size:var(--text-lg);margin-top:var(--sp-2);">AaBbCc 0123</p></div>
+      </div>
+    </div>
+
+    <!-- Escala tipográfica -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-6);" class="reveal-up">Escala Tipográfica</h4>
+    <div style="display:flex;flex-direction:column;gap:var(--sp-3);" class="reveal-up stagger-1">
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-5xl</span>
+        <span style="font-family:var(--font-heading);font-size:var(--text-5xl);font-weight:800;line-height:1.1;">Velocidade</span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">72px / Exo 800</span>
+      </div>
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-4xl</span>
+        <span style="font-family:var(--font-heading);font-size:var(--text-4xl);font-weight:700;line-height:1.1;">Fibra Óptica</span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">56px / Exo 700</span>
+      </div>
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-price</span>
+        <span style="font-family:var(--font-heading);font-size:var(--text-price);font-weight:800;line-height:1;color:var(--color-primary-dark);">R$ 99<span style="font-size:0.5em;font-weight:600;">,90</span></span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">48px / Exo 800</span>
+      </div>
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-2xl</span>
+        <span style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;line-height:1.2;">Conecte-se</span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">32px / Exo 700</span>
+      </div>
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-md</span>
+        <span style="font-family:var(--font-body);font-size:var(--text-md);font-weight:400;">Texto padrão para parágrafos e corpo (Montserrat).</span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">16px / Montserrat 400</span>
+      </div>
+      <div class="type-row" style="display:flex;align-items:baseline;gap:var(--sp-6);margin-bottom:0;">
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);min-width:80px;">text-xs</span>
+        <span class="overline">AGENTE AUTORIZADO ALGAR TELECOM</span>
+        <span style="font-family:'SF Mono',monospace;font-size:11px;color:var(--color-text-secondary);">10px / Exo 600 / Overline</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 03. ESPAÇAMENTO ═══════════════ -->
+<section id="spacing" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title reveal-up">03 / Espaçamento</p>
+    <h2 class="ds-heading reveal-up stagger-1">Ritmo e Respiração</h2>
+    <p class="ds-desc reveal-up stagger-2">Sistema de espaçamento baseado em grid de 4px, escalando harmonicamente para criar hierarquia visual e áreas de respiro generosas.</p>
+
+    <div style="max-width:700px;" class="reveal-up stagger-3">
+      <div class="space-visual"><span class="space-label">--sp-1 · 4px</span><div class="space-bar" style="width:4px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-2 · 8px</span><div class="space-bar" style="width:8px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-3 · 12px</span><div class="space-bar" style="width:12px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-4 · 16px</span><div class="space-bar" style="width:16px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-6 · 24px</span><div class="space-bar" style="width:24px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-8 · 32px</span><div class="space-bar" style="width:32px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-12 · 48px</span><div class="space-bar" style="width:48px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-16 · 64px</span><div class="space-bar" style="width:64px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-20 · 80px</span><div class="space-bar" style="width:80px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-24 · 96px</span><div class="space-bar" style="width:96px;"></div></div>
+      <div class="space-visual"><span class="space-label">--sp-32 · 128px</span><div class="space-bar" style="width:128px;"></div></div>
+    </div>
+
+    <!-- Border Radius -->
+    <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--sp-4);margin-top:var(--sp-12);" class="reveal-up">Raios de Borda</h4>
+    <div style="display:flex;gap:var(--sp-8);flex-wrap:wrap;align-items:end;" class="reveal-up stagger-1">
+      <div style="text-align:center;">
+        <div style="width:80px;height:80px;background:var(--color-primary);border-radius:var(--radius-card);margin-bottom:var(--sp-2);"></div>
+        <span style="font-family:'SF Mono',monospace;font-size:10px;color:var(--color-text-secondary);">Cards 12px</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:40px;background:var(--color-accent);border-radius:var(--radius-btn);margin-bottom:var(--sp-2);"></div>
+        <span style="font-family:'SF Mono',monospace;font-size:10px;color:var(--color-text-secondary);">Botões 8px</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:40px;background:var(--color-bg-muted);border:1px solid var(--color-border-light);border-radius:var(--radius-input);margin-bottom:var(--sp-2);"></div>
+        <span style="font-family:'SF Mono',monospace;font-size:10px;color:var(--color-text-secondary);">Inputs 8px</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:100px;height:28px;background:rgba(40,190,165,0.12);border-radius:var(--radius-badge);margin-bottom:var(--sp-2);"></div>
+        <span style="font-family:'SF Mono',monospace;font-size:10px;color:var(--color-text-secondary);">Badges 20px</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 04. COMPONENTES ═══════════════ -->
+<section id="components" class="ds-section" style="background:var(--color-bg-soft);">
+  <div class="container">
+    <p class="ds-section-title reveal-up">04 / Componentes</p>
+    <h2 class="ds-heading reveal-up stagger-1">Vocabulário Visual</h2>
+    <p class="ds-desc reveal-up stagger-2">Peças modulares e reutilizáveis — cada componente funciona sobre fundo claro e escuro.</p>
+
+    <!-- BUTTONS -->
+    <div class="grid-2 reveal-up stagger-3" style="margin-bottom:var(--sp-12);">
+      <div class="showcase-card">
+        <p class="showcase-card-title">Botões — Tema Claro</p>
+        <div class="demo-flex" style="margin-bottom:var(--sp-6);">
+          <button class="btn btn-primary">Contratar Agora</button>
+          <button class="btn btn-secondary">Ver Planos</button>
+        </div>
+        <div class="demo-flex" style="margin-bottom:var(--sp-6);">
+          <button class="btn btn-primary btn-lg">CTA Grande</button>
+        </div>
+        <div class="demo-flex">
+          <a href="#" class="btn btn-ghost">Saiba mais →</a>
+        </div>
+      </div>
+
+      <div class="showcase-card" style="background:var(--color-primary-dark);border-color:rgba(255,255,255,0.1);">
+        <p class="showcase-card-title" style="color:rgba(255,255,255,0.5);">Botões — Tema Escuro</p>
+        <div class="demo-flex" style="margin-bottom:var(--sp-6);">
+          <button class="btn btn-primary-dark">Contratar Agora</button>
+          <button class="btn btn-secondary" style="border-color:rgba(255,255,255,0.3);color:var(--color-text-inverse);">Ver Planos</button>
+        </div>
+        <div class="demo-flex">
+          <a href="#" class="btn btn-ghost" style="color:var(--color-primary-light);">Saiba mais →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="showcase-card reveal-up" style="margin-bottom:var(--sp-12);">
+      <p class="showcase-card-title">Badges & Tags</p>
+      <div class="demo-flex">
+        <span class="badge badge-popular">★ Mais Popular</span>
+        <span class="badge badge-green">Fibra Óptica</span>
+        <span class="badge badge-outline">Wi-Fi 6</span>
+        <span class="badge badge-green"><iconify-icon icon="solar:verified-check-bold" width="12"></iconify-icon> Agente Autorizado</span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="showcase-card reveal-up" style="margin-bottom:var(--sp-12);">
+      <p class="showcase-card-title">Input / Consulta (Genérico)</p>
+      <div style="max-width:500px;margin-bottom:var(--sp-6);">
+        <div class="input-group">
+          <input type="text" placeholder="Digite seu CEP ou cidade..."/>
+          <button>Consultar</button>
+        </div>
+      </div>
+      <p style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-bottom:var(--sp-6);">Variante escura:</p>
+      <div style="max-width:500px;background:var(--color-primary-dark);padding:var(--sp-6);border-radius:var(--radius-card);">
+        <div class="input-group input-group-dark">
+          <input type="text" placeholder="Digite seu CEP ou cidade..."/>
+          <button>Consultar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="showcase-card reveal-up" style="margin-bottom:var(--sp-12);">
+      <p class="showcase-card-title">Blocos de Estatística</p>
+      <div class="grid-4">
+        <div class="stat-block" style="padding-right:var(--sp-6);border-right:1px solid var(--color-border-light);">
+          <div class="stat-value">500<span style="font-size:0.6em;color:var(--color-primary);">Mbps</span></div>
+          <div class="stat-label">Velocidade Máxima</div>
+        </div>
+        <div class="stat-block" style="padding-right:var(--sp-6);border-right:1px solid var(--color-border-light);">
+          <div class="stat-value">+50</div>
+          <div class="stat-label">Cidades Atendidas</div>
+        </div>
+        <div class="stat-block" style="padding-right:var(--sp-6);border-right:1px solid var(--color-border-light);">
+          <div class="stat-value">99.8<span style="font-size:0.5em;">%</span></div>
+          <div class="stat-label">Uptime Garantido</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-value" style="color:var(--color-primary);">24/7</div>
+          <div class="stat-label">Suporte Técnico</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECORATIVE -->
+    <div class="showcase-card reveal-up" style="margin-bottom:var(--sp-12);">
+      <p class="showcase-card-title">Elementos Decorativos</p>
+      <div style="display:flex;flex-direction:column;gap:var(--sp-8);">
+        <div>
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);font-family:monospace;display:block;margin-bottom:var(--sp-2);">.green-line</span>
+          <div class="green-line"></div>
+        </div>
+        <div>
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);font-family:monospace;display:block;margin-bottom:var(--sp-2);">.section-divider</span>
+          <div class="section-divider"></div>
+        </div>
+        <div>
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);font-family:monospace;display:block;margin-bottom:var(--sp-2);">.pulse-dot</span>
+          <div style="display:flex;gap:var(--sp-6);align-items:center;">
+            <div class="pulse-dot"></div>
+          </div>
+        </div>
+        <div>
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);font-family:monospace;display:block;margin-bottom:var(--sp-2);">.overline</span>
+          <span class="overline">Agente Autorizado Algar Telecom</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIAL -->
+    <div class="showcase-card reveal-up">
+      <p class="showcase-card-title">Depoimento</p>
+      <div style="max-width:600px;">
+        <div class="testimonial">
+          <p class="testimonial-text">"Desde que troquei para a fibra da Algar, minha internet não caiu mais. O suporte foi rápido e a instalação no mesmo dia. Recomendo para todo mundo do bairro!"</p>
+          <p class="testimonial-author">Maria da Silva</p>
+          <p class="testimonial-location">Belo Horizonte, MG</p>
+          <p class="testimonial-source">Via Google Reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 05. CARDS DE PLANO ═══════════════ -->
+<section class="ds-section theme-dark grid-paper" style="position:relative;overflow:hidden;">
+  <!-- Ambient glows -->
+  <div class="glow glow-green" style="width:600px;height:600px;top:-200px;left:-100px;"></div>
+  <div class="glow glow-accent" style="width:400px;height:400px;bottom:-100px;right:-80px;"></div>
+  <div class="fiber-lines"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="ds-section-title reveal-up">04b / Cards de Plano</p>
+    <h2 class="ds-heading reveal-up stagger-1">Planos de Internet Fibra</h2>
+    <p class="ds-desc reveal-up stagger-2">O card de plano é o componente central da LP. Versões claro e escuro, com destaque "Mais Popular" usando o badge de acento amarelo.</p>
+
+    <!-- Plans on dark bg -->
+    <div class="grid-3 reveal-up stagger-3" style="margin-bottom:var(--sp-12);">
+      <!-- Plan 1 -->
+      <div class="plan-card-dark">
+        <div class="plan-header">
+          <p class="plan-name">Fibra 200</p>
+          <p class="plan-subtitle">Ideal para navegação e redes sociais</p>
+        </div>
+        <div style="margin-bottom:var(--sp-6);">
+          <p class="plan-price" style="color:var(--color-text-inverse);">R$ 89<span style="font-size:0.4em;font-weight:600;color:rgba(255,255,255,0.5);">,90/mês</span></p>
+        </div>
+        <ul class="plan-benefits">
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> 200 Mega de download</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Wi-Fi grátis incluso</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Instalação gratuita</li>
+        </ul>
+        <button class="btn btn-secondary" style="width:100%;border-color:rgba(255,255,255,0.2);color:var(--color-text-inverse);">Assinar</button>
+      </div>
+
+      <!-- Plan 2 — Popular -->
+      <div class="plan-card-dark popular green-border-animated">
+        <span class="badge badge-popular" style="position:absolute;top:calc(-1 * var(--sp-3));left:50%;transform:translateX(-50%);z-index:2;">★ Mais Popular</span>
+        <div class="plan-header" style="margin-top:var(--sp-4);">
+          <p class="plan-name">Fibra 400</p>
+          <p class="plan-subtitle">Para famílias e home office</p>
+        </div>
+        <div style="margin-bottom:var(--sp-6);">
+          <p class="plan-price" style="color:var(--color-text-inverse);">R$ 119<span style="font-size:0.4em;font-weight:600;color:rgba(255,255,255,0.5);">,90/mês</span></p>
+        </div>
+        <ul class="plan-benefits">
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> 400 Mega de download</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Wi-Fi 6 incluso</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Instalação gratuita</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Suporte prioritário</li>
+        </ul>
+        <button class="btn btn-primary-dark" style="width:100%;">Assinar Agora</button>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="plan-card-dark">
+        <div class="plan-header">
+          <p class="plan-name">Fibra 500</p>
+          <p class="plan-subtitle">Máxima velocidade para gamers e streamers</p>
+        </div>
+        <div style="margin-bottom:var(--sp-6);">
+          <p class="plan-price" style="color:var(--color-text-inverse);">R$ 149<span style="font-size:0.4em;font-weight:600;color:rgba(255,255,255,0.5);">,90/mês</span></p>
+        </div>
+        <ul class="plan-benefits">
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> 500 Mega de download</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Wi-Fi 6 incluso</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> IP fixo incluso</li>
+          <li><iconify-icon icon="solar:check-circle-bold" width="16"></iconify-icon> Suporte VIP 24h</li>
+        </ul>
+        <button class="btn btn-secondary" style="width:100%;border-color:rgba(255,255,255,0.2);color:var(--color-text-inverse);">Assinar</button>
+      </div>
+    </div>
+
+    <!-- Feature bar -->
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:var(--sp-6);" class="reveal-up">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-4);padding:var(--sp-4) 0;font-size:var(--text-sm);">
+        <div style="display:flex;align-items:center;gap:var(--sp-3);color:rgba(255,255,255,0.7);"><iconify-icon icon="solar:bolt-circle-bold" style="color:var(--color-primary-light);font-size:1.2em;"></iconify-icon>Internet 100% Fibra</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);color:rgba(255,255,255,0.7);"><iconify-icon icon="solar:shield-check-bold" style="color:var(--color-primary-light);font-size:1.2em;"></iconify-icon>Rede Segura</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);color:rgba(255,255,255,0.7);"><iconify-icon icon="solar:calendar-bold" style="color:var(--color-primary-light);font-size:1.2em;"></iconify-icon>Sem Fidelidade</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);color:rgba(255,255,255,0.7);"><iconify-icon icon="solar:phone-calling-bold" style="color:var(--color-primary-light);font-size:1.2em;"></iconify-icon>Suporte Local</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 06. EFEITOS & ANIMAÇÕES ═══════════════ -->
+<section id="effects" class="ds-section" style="background:var(--color-bg-soft);">
+  <div class="container">
+    <p class="ds-section-title reveal-up">05 / Efeitos & Animações</p>
+    <h2 class="ds-heading reveal-up stagger-1">Detalhes que Vivem</h2>
+    <p class="ds-desc reveal-up stagger-2">Micro-interações, texturas e efeitos que adicionam profundidade e personalidade técnica sem comprometer a performance.</p>
+
+    <div class="grid-3 reveal-up stagger-3" style="margin-bottom:var(--sp-12);">
+      <!-- Shimmer Text -->
+      <div class="showcase-card effect-box">
+        <p class="showcase-card-title" style="position:absolute;top:var(--sp-4);left:var(--sp-4);">Shimmer Text</p>
+        <span class="shimmer-text" style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:800;">Fibra</span>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:var(--sp-4);">Gradiente animado no texto — destaque de luxo para palavras-chave.</p>
+      </div>
+
+      <!-- Animated Border -->
+      <div class="showcase-card effect-box" style="position:relative;">
+        <p class="showcase-card-title" style="position:absolute;top:var(--sp-4);left:var(--sp-4);">Borda Animada</p>
+        <div class="green-border-animated" style="width:160px;height:100px;display:flex;align-items:center;justify-content:center;background:var(--color-bg);">
+          <span style="font-size:var(--text-sm);color:var(--color-text-secondary);font-family:var(--font-heading);font-weight:700;">CTA Hero</span>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:var(--sp-4);">Borda cônica giratória — para destaque especial.</p>
+      </div>
+
+      <!-- Dot Pattern -->
+      <div class="showcase-card effect-box" style="position:relative;">
+        <p class="showcase-card-title" style="position:absolute;top:var(--sp-4);left:var(--sp-4);">Dot Pattern</p>
+        <div style="width:200px;height:120px;background:var(--color-bg);position:relative;overflow:hidden;border-radius:var(--radius-card);">
+          <div style="position:absolute;inset:0;opacity:0.06;background-image:radial-gradient(circle,var(--color-primary) 0.5px,transparent 0.5px);background-size:16px 16px;"></div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:var(--sp-4);">Textura sutil de pontos sobre toda a página — evoca fibra óptica.</p>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal-up" style="margin-bottom:var(--sp-12);">
+      <!-- Ambient Glow -->
+      <div class="showcase-card effect-box" style="background:var(--color-primary-dark);border-color:rgba(255,255,255,0.1);position:relative;overflow:hidden;min-height:200px;border-radius:var(--radius-card);">
+        <p class="showcase-card-title" style="position:absolute;top:var(--sp-4);left:var(--sp-4);color:rgba(255,255,255,0.5);">Ambient Glow</p>
+        <div class="glow glow-green" style="width:300px;height:300px;top:-60px;right:-60px;"></div>
+        <div class="glow glow-accent" style="width:200px;height:200px;bottom:-40px;left:-40px;"></div>
+        <span style="position:relative;z-index:1;color:rgba(255,255,255,0.7);font-size:var(--text-sm);font-family:var(--font-body);">Radial gradients posicionados como decoração de fundo — atmosfera tech.</span>
+      </div>
+
+      <!-- Grid Paper -->
+      <div class="showcase-card effect-box grid-paper" style="background:var(--color-primary-dark);border-color:rgba(255,255,255,0.1);border-radius:var(--radius-card);">
+        <p class="showcase-card-title" style="position:absolute;top:var(--sp-4);left:var(--sp-4);color:rgba(255,255,255,0.5);">Grid Paper</p>
+        <span style="color:rgba(255,255,255,0.7);font-size:var(--text-sm);font-family:var(--font-body);">Padrão de grid sutil sobre seções escuras — profundidade técnica.</span>
+      </div>
+    </div>
+
+    <!-- Scroll Animations -->
+    <div class="showcase-card reveal-up" style="margin-bottom:var(--sp-12);">
+      <p class="showcase-card-title">Animações de Scroll Reveal</p>
+      <div class="grid-4">
+        <div class="reveal-up revealed" style="padding:var(--sp-6);background:var(--color-bg-muted);text-align:center;border-radius:var(--radius-card);">
+          <iconify-icon icon="solar:arrow-up-linear" style="font-size:1.5em;color:var(--color-primary);"></iconify-icon>
+          <p style="font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--color-text-secondary);">.reveal-up</p>
+        </div>
+        <div class="reveal-left revealed" style="padding:var(--sp-6);background:var(--color-bg-muted);text-align:center;border-radius:var(--radius-card);">
+          <iconify-icon icon="solar:arrow-left-linear" style="font-size:1.5em;color:var(--color-primary);"></iconify-icon>
+          <p style="font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--color-text-secondary);">.reveal-left</p>
+        </div>
+        <div class="reveal-scale revealed" style="padding:var(--sp-6);background:var(--color-bg-muted);text-align:center;border-radius:var(--radius-card);">
+          <iconify-icon icon="solar:maximize-linear" style="font-size:1.5em;color:var(--color-primary);"></iconify-icon>
+          <p style="font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--color-text-secondary);">.reveal-scale</p>
+        </div>
+        <div class="reveal-fade revealed" style="padding:var(--sp-6);background:var(--color-bg-muted);text-align:center;border-radius:var(--radius-card);">
+          <iconify-icon icon="solar:eye-linear" style="font-size:1.5em;color:var(--color-primary);"></iconify-icon>
+          <p style="font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--color-text-secondary);">.reveal-fade</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shadows -->
+    <div class="showcase-card reveal-up">
+      <p class="showcase-card-title">Sombras (leves, tom verde)</p>
+      <div style="display:flex;gap:var(--sp-8);flex-wrap:wrap;align-items:center;">
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);">sm</span>
+        </div>
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);">md</span>
+        </div>
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);">lg</span>
+        </div>
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-xl);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-text-secondary);">xl</span>
+        </div>
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-green);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-primary);">green</span>
+        </div>
+        <div style="width:100px;height:100px;background:white;box-shadow:var(--shadow-accent);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-card);">
+          <span style="font-size:var(--text-xs);color:var(--color-accent);">accent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 07. PADRÕES DE LAYOUT ═══════════════ -->
+<section id="patterns" class="ds-section theme-dark grid-paper" style="position:relative;overflow:hidden;">
+  <!-- Ambient glow decorations -->
+  <div class="glow glow-green" style="width:600px;height:600px;top:-200px;right:-100px;"></div>
+  <div class="glow glow-accent" style="width:400px;height:400px;bottom:-100px;left:-80px;"></div>
+  <div class="fiber-lines"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="ds-section-title reveal-up">06 / Padrões de Layout</p>
+    <h2 class="ds-heading reveal-up stagger-1">Composição Completa</h2>
+    <p class="ds-desc reveal-up stagger-2">Exemplos de como os tokens e componentes se combinam em padrões de layout reais para a landing page.</p>
+
+    <!-- Marquee -->
+    <div style="margin-bottom:var(--sp-16);border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);padding:var(--sp-4) 0;overflow:hidden;" class="reveal-up stagger-3">
+      <div class="marquee-track" style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);">
+        <span style="padding:0 var(--sp-8);">Internet Fibra</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Algar Telecom</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Agente Autorizado</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Conexão Estável</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Wi-Fi 6</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Suporte 24h</span><span style="color:var(--color-primary-light);">◆</span>
+        <!-- duplicate for seamless loop -->
+        <span style="padding:0 var(--sp-8);">Internet Fibra</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Algar Telecom</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Agente Autorizado</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Conexão Estável</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Wi-Fi 6</span><span style="color:var(--color-primary-light);">◆</span>
+        <span style="padding:0 var(--sp-8);">Suporte 24h</span><span style="color:var(--color-primary-light);">◆</span>
+      </div>
+    </div>
+
+    <!-- Section header pattern -->
+    <div style="text-align:center;margin-bottom:var(--sp-16);" class="reveal-up">
+      <p style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:var(--sp-4);">/ Padrão de cabeçalho de seção /</p>
+      <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:800;line-height:1.08;margin-bottom:var(--sp-4);color:var(--color-text-inverse);">
+        <span style="display:block;">A internet que</span>
+        <span style="display:block;color:var(--color-primary-light);">sua casa merece</span>
+      </h2>
+      <p style="font-family:var(--font-body);font-size:var(--text-base);color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto;font-weight:400;line-height:1.75;">Planos de fibra óptica com a qualidade Algar Telecom, instalação no mesmo dia e suporte local em sua cidade.</p>
+    </div>
+
+    <!-- Quote Pattern (dark) -->
+    <div style="max-width:800px;margin:0 auto var(--sp-16);padding:var(--sp-8);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-card);position:relative;" class="reveal-up">
+      <div style="position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,transparent,var(--color-primary),transparent);border-radius:var(--radius-card) var(--radius-card) 0 0;"></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-6);">
+        <span class="badge badge-green" style="color:var(--color-primary-light);border-color:rgba(30,255,210,0.2);">Depoimento</span>
+        <span style="font-family:var(--font-heading);font-size:var(--text-xs);letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Cliente Satisfeito</span>
+      </div>
+      <p style="font-family:var(--font-body);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;line-height:1.5;color:var(--color-text-inverse);margin-bottom:var(--sp-6);font-style:italic;">"Troquei de operadora e a diferença foi imediata. A internet da Algar não cai, e quando precisei de suporte, resolveram em minutos. Melhor custo-benefício da região."</p>
+      <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:var(--sp-4);display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <p style="font-family:var(--font-heading);font-size:var(--text-base);font-weight:700;color:var(--color-text-inverse);">João Mendes</p>
+          <p style="font-family:var(--font-body);font-size:var(--text-sm);color:rgba(255,255,255,0.4);margin-top:2px;">Juiz de Fora, MG · Google Reviews</p>
+        </div>
+        <div style="display:flex;gap:2px;">
+          <iconify-icon icon="solar:star-bold" style="color:var(--color-accent);font-size:14px;"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" style="color:var(--color-accent);font-size:14px;"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" style="color:var(--color-accent);font-size:14px;"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" style="color:var(--color-accent);font-size:14px;"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" style="color:var(--color-accent);font-size:14px;"></iconify-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav Dark Pattern -->
+    <div style="margin-bottom:var(--sp-16);" class="reveal-up">
+      <p style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:var(--sp-6);">Navegação (variante escura)</p>
+      <div style="background:rgba(10,100,90,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);padding:0 var(--sp-6);display:flex;align-items:center;justify-content:space-between;height:64px;border-radius:var(--radius-card);">
+        <span style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;letter-spacing:-0.02em;color:var(--color-text-inverse);display:flex;align-items:center;gap:var(--sp-2);">
+          <iconify-icon icon="solar:bolt-circle-bold" width="22" style="color:var(--color-primary-light);"></iconify-icon>
+          AlgarFibra
+        </span>
+        <div style="display:flex;gap:var(--sp-6);">
+          <a href="#" style="font-family:var(--font-heading);font-size:var(--text-sm);color:rgba(255,255,255,0.6);font-weight:500;">Planos</a>
+          <a href="#" style="font-family:var(--font-heading);font-size:var(--text-sm);color:rgba(255,255,255,0.6);font-weight:500;">Cobertura</a>
+          <a href="#" style="font-family:var(--font-heading);font-size:var(--text-sm);color:rgba(255,255,255,0.6);font-weight:500;">Suporte</a>
+        </div>
+        <button class="btn btn-primary-dark" style="font-size:var(--text-sm);padding:var(--sp-2) var(--sp-4);">Contratar</button>
+      </div>
+    </div>
+
+    <!-- Footer Pattern Preview -->
+    <div class="reveal-up">
+      <p style="font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:var(--sp-6);">Padrão de Footer</p>
+      <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:var(--sp-8);display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:var(--sp-8);">
+        <div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-4);">
+            <iconify-icon icon="solar:bolt-circle-bold" width="24" style="color:var(--color-primary-light);"></iconify-icon>
+            <span style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:800;letter-spacing:-0.02em;text-transform:uppercase;">AlgarFibra</span>
+          </div>
+          <p style="font-family:var(--font-body);font-size:var(--text-base);color:rgba(255,255,255,0.5);line-height:1.7;max-width:300px;">Internet fibra óptica com a qualidade Algar Telecom. Conectamos famílias e empresas em todo o Brasil.</p>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:600;margin-bottom:var(--sp-4);color:rgba(255,255,255,0.8);">Navegação</h4>
+          <div style="display:flex;flex-direction:column;gap:var(--sp-2);">
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">Planos</a>
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">Cobertura</a>
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">Suporte</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:600;margin-bottom:var(--sp-4);color:rgba(255,255,255,0.8);">Contato</h4>
+          <div style="display:flex;flex-direction:column;gap:var(--sp-2);">
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">WhatsApp</a>
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">Telefone</a>
+            <a href="#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.4);font-family:var(--font-body);">E-mail</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-heading);font-size:var(--text-sm);font-weight:600;margin-bottom:var(--sp-4);color:rgba(255,255,255,0.8);">Consulte</h4>
+          <div class="input-group input-group-dark" style="border-radius:var(--radius-input);">
+            <input type="text" placeholder="Seu CEP..." style="padding:var(--sp-3) var(--sp-3);font-size:var(--text-sm);"/>
+            <button style="font-size:var(--text-sm);padding:var(--sp-3) var(--sp-4);">Verificar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Footer disclaimer -->
+      <div style="margin-top:var(--sp-8);padding-top:var(--sp-4);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-4);">
+        <span style="font-family:var(--font-body);font-size:var(--text-sm);color:rgba(255,255,255,0.35);">© 2026 Agente Autorizado Algar Telecom. Todos os direitos reservados.</span>
+        <span style="font-family:var(--font-body);font-size:var(--text-xs);color:rgba(255,255,255,0.25);max-width:400px;text-align:right;line-height:1.5;">Parceiro autorizado Algar Telecom. Uso da marca regulamentado conforme manual de identidade visual do programa de Agentes Autorizados.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ CLOSING SECTION ═══════════════ -->
+<section style="padding:var(--sp-32) 0;background:var(--color-primary-dark);text-align:center;position:relative;overflow:hidden;">
+  <div class="glow glow-green" style="width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="fiber-lines"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <span class="overline" style="margin-bottom:var(--sp-6);display:block;color:var(--color-primary-light);">Design System Base</span>
+    <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:var(--color-text-inverse);margin-bottom:var(--sp-6);line-height:1.1;">
+      Pronto para construir<br/><span style="color:var(--color-primary-light);">a landing page.</span>
+    </h2>
+    <p style="font-family:var(--font-body);font-size:var(--text-base);color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto var(--sp-8);line-height:1.75;font-weight:400;">
+      Todos os tokens, componentes e padrões estão definidos. A próxima etapa é compor a landing page dobra por dobra usando esta fundação.
+    </p>
+    <a href="#" class="btn btn-primary-dark btn-lg">Próximo Passo →</a>
+  </div>
+
+  <!-- Large watermark -->
+  <div style="margin-top:var(--sp-24);pointer-events:none;user-select:none;overflow:hidden;opacity:0.03;">
+    <span style="font-family:var(--font-heading);font-size:clamp(6rem,18vw,16rem);font-weight:800;color:white;white-space:nowrap;letter-spacing:-0.04em;">ALGAR FIBRA</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+// ─── Scroll Reveal Observer ───
+const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale, .reveal-fade');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ─── Nav scroll effect ───
+const nav = document.getElementById('ds-nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    nav.style.boxShadow = 'var(--shadow-md)';
+    nav.style.background = 'rgba(255,255,255,0.95)';
+  } else {
+    nav.style.boxShadow = 'none';
+    nav.style.background = 'rgba(255,255,255,0.85)';
+  }
+}, { passive: true });
+
+// ─── Smooth scroll for anchor links ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ─── Particle field in hero ───
+(function() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  
+  function createParticle() {
+    const particle = document.createElement('div');
+    const size = Math.random() * 3 + 1;
+    const startX = Math.random() * 100;
+    const duration = Math.random() * 6 + 4;
+    const delay = Math.random() * 4;
+    
+    particle.style.cssText = `
+      position: absolute;
+      bottom: -10px;
+      left: ${startX}%;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${Math.random() > 0.5 ? 'var(--color-primary-light)' : 'var(--color-primary)'};
+      border-radius: 50%;
+      opacity: 0;
+      animation: particle-float ${duration}s ease-in ${delay}s infinite;
+    `;
+    container.appendChild(particle);
+  }
+  
+  for (let i = 0; i < 30; i++) {
+    createParticle();
+  }
+})();
+
+// ─── Active nav link highlighting ───
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.ds-nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.style.color = '';
+    link.style.background = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--color-primary)';
+      link.style.background = 'rgba(40,190,165,0.06)';
+    }
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>
