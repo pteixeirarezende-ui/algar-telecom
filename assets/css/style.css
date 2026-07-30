@@ -374,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2.2rem, 8vw, 5.5rem);
   font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
   margin-bottom: var(--sp-6);
   color: var(--color-text-inverse);
@@ -440,7 +440,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .plan-speed {
-  font-family: var(--font-heading); font-size: clamp(3rem, 5vw, 4.5rem);
+  font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 800; color: var(--color-text-inverse);
   line-height: 1; margin-bottom: var(--sp-2);
   text-shadow: 0 0 40px rgba(255,255,255,0.3);
@@ -476,7 +476,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--sp-8);
 }
 .price-block .currency { font-size: var(--text-lg); color: var(--color-primary-light); font-weight: 700; vertical-align: super; }
-.price-block .amount { font-family: var(--font-heading); font-size: 4rem; font-weight: 800; line-height: 0.9; }
+.price-block .amount { font-family: var(--font-heading); font-size: clamp(3rem, 10vw, 4rem); font-weight: 800; line-height: 0.9; }
 .price-block .cents { font-size: var(--text-2xl); font-weight: 700; }
 .price-block .period { font-size: var(--text-xs); color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
 
@@ -509,7 +509,7 @@ h1, h2, h3, h4, h5, h6 {
   .hero-desc { margin-left: auto; margin-right: auto; }
   .hero-ctas { justify-content: center; }
   .features-list { justify-content: center; }
-  .glass-card-premium { transform: none; }
+  .glass-card-premium { transform: none; padding: var(--sp-8) var(--sp-4); margin: 0 auto; max-width: 100%; }
   .glass-card-premium:hover { transform: translateY(-10px); }
   .hero { padding-bottom: 120px; } /* espaço pro marquee */
 }
@@ -524,7 +524,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 10;
 }
 .section-header { text-align: center; margin-bottom: var(--sp-16); }
-.section-header h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--color-text-inverse); margin-bottom: var(--sp-4); }
+.section-header h2 { font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--color-text-inverse); margin-bottom: var(--sp-4); }
 .section-header p { font-size: var(--text-lg); color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; }
 
 .plans-grid {
@@ -560,14 +560,14 @@ h1, h2, h3, h4, h5, h6 {
 .plan-card.highlight:hover { transform: scale(1.05) translateY(-8px); }
 
 .plan-name { font-size: var(--text-sm); font-weight: 700; color: var(--color-primary-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--sp-2); }
-.plan-mega { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800; color: var(--color-text-inverse); line-height: 1; margin-bottom: var(--sp-6); }
+.plan-mega { font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 800; color: var(--color-text-inverse); line-height: 1; margin-bottom: var(--sp-6); }
 .plan-mega span { font-size: 0.35em; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-left: 4px; }
 
 .plan-desc { font-size: var(--text-sm); color: rgba(255,255,255,0.7); margin-bottom: var(--sp-8); min-height: 50px; }
 
 .plan-price { margin-bottom: var(--sp-8); }
 .plan-price .currency { font-size: var(--text-md); color: var(--color-primary-light); font-weight: 700; vertical-align: super; }
-.plan-price .amount { font-family: var(--font-heading); font-size: 3rem; font-weight: 800; color: var(--color-text-inverse); line-height: 1; }
+.plan-price .amount { font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 3rem); font-weight: 800; color: var(--color-text-inverse); line-height: 1; }
 .plan-price .cents { font-size: var(--text-lg); font-weight: 700; color: var(--color-text-inverse); }
 
 .plan-features { list-style: none; margin-bottom: var(--sp-8); flex-grow: 1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--sp-6); }
@@ -774,7 +774,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 600px; margin: 0 auto;
 }
 .footer-cta h2 {
-  font-size: clamp(2.5rem, 5vw, 4rem); color: var(--color-text-inverse);
+  font-size: clamp(2rem, 8vw, 4rem); color: var(--color-text-inverse);
   margin-bottom: var(--sp-4); line-height: 1.1;
 }
 .footer-cta p {
@@ -828,4 +828,9 @@ h1, h2, h3, h4, h5, h6 {
   .footer-content { flex-direction: column; align-items: center; text-align: center; }
   .disclaimer-parceiro { align-items: center; margin-left: auto; margin-right: auto; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: var(--sp-4); }
+  .status-indicator { display: none; }
+  .btn-glass span { display: none; }
+  .btn-glass { padding: var(--sp-2) var(--sp-3); }
+  .brand-wrapper img { height: 35px !important; }
 }
