@@ -832,5 +832,5 @@ h1, h2, h3, h4, h5, h6 {
   .status-indicator { display: none; }
   .btn-glass span { display: none; }
   .btn-glass { padding: var(--sp-2) var(--sp-3); }
-  .brand-wrapper img { height: 35px !important; }
+  .brand-wrapper img { height: 35px !important; width: auto !important; object-fit: contain !important; flex-shrink: 0 !important; }
 }
