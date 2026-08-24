@@ -834,3 +834,102 @@ h1, h2, h3, h4, h5, h6 {
   .btn-glass { padding: var(--sp-2) var(--sp-3); }
   .brand-wrapper img { height: 35px !important; width: auto !important; object-fit: contain !important; flex-shrink: 0 !important; }
 }
+
+/* ESTILOS DO BUSCADOR DE CEP */
+.cep-checker-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px auto;
+  max-width: 440px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+}
+.cep-checker-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cep-checker-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+}
+.cep-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 480px) {
+  .cep-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.cep-input-field {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+.cep-input-field:focus {
+  border-color: #25D366;
+  box-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+}
+.cep-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.btn-check-cep {
+  width: 100%;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+.btn-check-cep:hover {
+  background-color: #0056b3;
+}
+.cep-result-box {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.btn-whats-success {
+  display: none;
+  width: 100%;
+  background-color: #25D366;
+  color: #ffffff;
+  padding: 14px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 14px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s, background-color 0.2s;
+  box-sizing: border-box;
+}
+.btn-whats-success:hover {
+  background-color: #20ba5a;
+  transform: translateY(-2px);
+}
