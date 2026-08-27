@@ -477,6 +477,11 @@
     const whatsAppAtendimento = "553121172419";
     const cepModal = document.getElementById('cep-modal');
 
+    // Remove acentos de qualquer string para comparação
+    function removerAcentos(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
     function abrirModal(e) {
       if(e) e.preventDefault();
       cepModal.style.display = 'flex';
@@ -519,6 +524,7 @@
 
       try {
         const resp = await fetch(`https://viacep.com.br/ws/${cepVal}/json/`);
+        if (!resp.ok) throw new Error('Falha na consulta');
         const data = await resp.json();
 
         if (data.erro) {
@@ -527,17 +533,20 @@
           return;
         }
 
-        const logradouroConsultado = data.logradouro ? data.logradouro.toUpperCase() : '';
+        // Normaliza: remove acentos e coloca em maiúsculo
+        const logradouroNormalizado = removerAcentos(data.logradouro || '').toUpperCase().trim();
 
-        // Busca o arquivo JSON de ruas ativas
+        // Busca o arquivo JSON de ruas ativas (com cache)
         if (!window.ruasAtendidas) {
           const resRuas = await fetch('assets/js/ruas_atendidas.json');
+          if (!resRuas.ok) throw new Error('Falha ao carregar lista de ruas');
           window.ruasAtendidas = await resRuas.json();
         }
 
-        const possuiViabilidade = window.ruasAtendidas.some(rua => 
-          logradouroConsultado.includes(rua) || rua.includes(logradouroConsultado)
-        );
+        const possuiViabilidade = window.ruasAtendidas.some(rua => {
+          const ruaNormalizada = rua.toUpperCase().trim();
+          return logradouroNormalizado.includes(ruaNormalizada) || ruaNormalizada.includes(logradouroNormalizado);
+        });
 
         if (possuiViabilidade) {
           feedback.style.color = '#25D366';
